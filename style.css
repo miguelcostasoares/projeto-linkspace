@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+:root {
+    --cor-destaque: #FF6803;
+    --cor-whatsapp: #11D428; 
+    --cor-preto:    #000000;
+                    #ACAFB5;
+                    #323A48;
+                    #344054;
+                    #7F9DB9;
+                    #035BA9;
+                    #25D366;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
