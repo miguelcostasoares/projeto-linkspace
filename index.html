@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkSpace</title>
     <link rel="shortcut icon" href="/favicon/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-a-wesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <header class="header">
-        <a href="index.html" target="_parent"><img src="/images/ologo_linkspace.png" alt="logo linkspace"
+        <a href="index.html" target="_parent"><img src="/images/clogo_linkspace.png" alt="logo linkspace"
                 id="logo-header"></a>
 
         <nav id="nav-header">
@@ -65,15 +65,11 @@
             <div class="hero_content">
                 <h1>Facilitamos a procura
                     <br>
-                    pelo <span class="destaque-title">imóvel ideal <br>
-                        </rb>para si.</span>
+                    pelo <span class="destaque-title">imóvel ideal <br>para si.</span>
                 </h1>
-                <p>
-                    Descobre a LinkSpace, a plataforma imobiliária que simplifica
-                    oportunidades, conecta <br> <span>pessoas aos espaços ideais e oferece soluções flexíveis para o teu
-                        estilo de vida.</span>
-                </p>
+            </div>
 
+            <div class="search-wrapper">
                 <div class="tabs">
                     <div class="tab active" onclick="setTab(this, 'venda')">Venda</div>
                     <div class="tab" onclick="setTab(this, 'codigo')">Código</div>
@@ -87,27 +83,22 @@
                             <i class="ti ti-chevron-down chevron"></i>
                         </div>
                     </div>
-
                     <div class="field-group">
-                        <span class="field-label">Dormitórios</span>
+                        <span class="field-label">Tipologia</span>
                         <div class="field-select">
                             <i class="ti ti-bed icon"></i>
                             <span class="label">Escolher</span>
                             <i class="ti ti-chevron-down chevron"></i>
                         </div>
                     </div>
-
                     <div class="divider"></div>
-
                     <div class="location-group">
                         <span class="location-label">Localização</span>
                         <input class="location-input" type="text"
                             placeholder="Digite ruas, bairros, cidades ou condomínios" />
                     </div>
-
                     <button class="btn-search">Buscar Propriedade</button>
                 </div>
-
                 <!-- Aba Código -->
                 <div class="search-bar" id="codigo-bar" style="display: none;">
                     <div class="location-group" style="flex: 1;">
@@ -118,6 +109,13 @@
                 </div>
             </div>
             </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-arrow">
+                    <i class="ti ti-chevron-down"></i>
+                </div>
             </div>
         </section>
 
@@ -130,10 +128,9 @@
 
             <div class="imoveis-grid">
 
-                <!-- Card -->
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/imovel1.jpg" alt="OLEA VILLAGE 76" class="card-image">
+                        <img src="/images/image1.jpeg" alt="OLEA VILLAGE 76" class="card-image">
 
                         <div class="card-badges">
                             <span class="badge badge-tipo">Apartamento</span>
@@ -189,7 +186,7 @@
                 <!-- Card -->
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/imovel2.jpg" alt="Cobertura T4" class="card-image">
+                        <img src="/images/image2.jpeg" alt="Cobertura T4" class="card-image">
 
                         <div class="card-badges">
                             <span class="badge badge-tipo">Cobertura</span>
@@ -245,7 +242,7 @@
                 <!-- Card -->
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/imovel3.jpg" alt="Moradia T2" class="card-image">
+                        <img src="/images/image3.jpeg" alt="Moradia T2" class="card-image">
 
                         <div class="card-badges">
                             <span class="badge badge-tipo">Moradia</span>
