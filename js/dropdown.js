@@ -29,9 +29,22 @@ function toggle(id) {
   if (selected.has(id)) {
     selected.delete(id);
   } else {
-    selected.add(id); // removida a verificação de limite
+    selected.add(id);
   }
   renderOptions();
+  updateBtnLabel();
+}
+
+function updateBtnLabel() {
+  const btnLabel = document.getElementById('btnLabel');
+  if (selected.size === 0) {
+    btnLabel.textContent = 'Escolher';
+  } else {
+    const names = options.filter(o => selected.has(o.id)).map(o => o.label);
+    btnLabel.innerHTML = names.length === 1
+      ? abreviar(names[0])
+      : `<span class="label-tag">${names.length}</span> selecionados`;
+  }
 }
 
 function toggleDropdown(e) {
@@ -49,22 +62,8 @@ function toggleDropdown(e) {
 
 
 function applySelection() {
-  const panel = document.getElementById('dropPanel');
-  const chevron = document.getElementById('chevron');
-  panel.classList.remove('open');
-  chevron.classList.remove('open');
-
-  const btnLabel = document.getElementById('btnLabel');
-
-  if (selected.size === 0) {
-    btnLabel.textContent = 'Escolher';
-  } else {
-    const names = options.filter(o => selected.has(o.id)).map(o => o.label);
-    // applySelection (Tipo de Imóvel)
-        btnLabel.innerHTML = names.length === 1
-    ? abreviar(names[0])
-    : `<span class="label-tag">${names.length}</span> selecionados`;
-  }
+  document.getElementById('dropPanel').classList.remove('open');
+  document.getElementById('chevron').classList.remove('open');
 }
 
 document.addEventListener('click', (e) => {
@@ -118,9 +117,22 @@ function toggleTipo(id) {
   if (selectedTipo.has(id)) {
     selectedTipo.delete(id);
   } else {
-    selectedTipo.add(id); // removida a verificação de limite
+    selectedTipo.add(id);
   }
   renderOptionsTipo();
+  updateBtnLabelTipo();
+}
+
+function updateBtnLabelTipo() {
+  const btnLabel = document.getElementById('btnLabelTipo');
+  if (selectedTipo.size === 0) {
+    btnLabel.textContent = 'Escolher';
+  } else {
+    const names = optionsTipo.filter(o => selectedTipo.has(o.id)).map(o => o.label);
+    btnLabel.innerHTML = names.length === 1
+      ? abreviar(names[0])
+      : `<span class="label-tag">${names.length}</span> selecionados`;
+  }
 }
 
 function toggleDropdownTipo(e) {
@@ -136,22 +148,8 @@ function toggleDropdownTipo(e) {
 }
 
 function applySelectionTipo() {
-  const panel = document.getElementById('dropPanelTipo');
-  const chevron = document.getElementById('chevronTipo');
-  panel.classList.remove('open');
-  chevron.classList.remove('open');
-
-  const btnLabel = document.getElementById('btnLabelTipo');
-
-  if (selectedTipo.size === 0) {
-    btnLabel.textContent = 'Escolher';
-  } else {
-    const names = optionsTipo.filter(o => selectedTipo.has(o.id)).map(o => o.label);
-        // applySelectionTipo (Tipologia)
-            btnLabel.innerHTML = names.length === 1
-        ? abreviar(names[0])
-        : `<span class="label-tag">${names.length}</span> selecionados`;
-  }
+  document.getElementById('dropPanelTipo').classList.remove('open');
+  document.getElementById('chevronTipo').classList.remove('open');
 }
 
 document.getElementById('dropPanelTipo').addEventListener('click', (e) => {
