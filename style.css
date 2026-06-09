@@ -2294,7 +2294,7 @@
     gap: 16px;
     margin-bottom: 36px;
 }
- 
+
 .about-value-item {
     display: flex;
     align-items: flex-start;
@@ -2310,8 +2310,32 @@
     cursor: default;
     opacity: 0;
     transform: translateX(-20px);
+
+    transition: 
+        translate 0.25s ease, 
+        box-shadow 0.25s ease, 
+        transform 0.25s ease, 
+        filter 0.25s ease;
 }
- 
+
+.about-value-item:hover {
+    translate: 0 -8px; /* Faz o card subir 6 píxeis */
+    
+    /* Opcional: Se quiser dar mais realismo, podemos aumentar um pouco a sombra enquanto ele sobe */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12); 
+}
+
+.about-values:hover .about-value-item {
+    filter: blur(1.0px); /* Um desfoque bem pequeno e subtil */
+    opacity: 0.85;       /* Opcional: reduz um pouco a opacidade para ajudar no foco */
+}
+
+.about-values:hover .about-value-item:hover {
+    filter: blur(0);     /* Remove o desfoque do card ativo */
+    opacity: 1;          /* Mantém a nitidez total no ativo */
+    translate: 0 -8px;   /* Mantém o teu efeito de subida que configurámos antes */
+}
+
 .about-value-item.about-revealed {
     animation: aboutSlideInLeft 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
@@ -2359,8 +2383,9 @@
     font-weight: 700;
     color: var(--cor-cinza-destaque);
     margin: 0 0 4px;
+
 }
- 
+
 .about-value-text p {
     font-family: var(--fonte-descricao);
     font-size: 12px;
