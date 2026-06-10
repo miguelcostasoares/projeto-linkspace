@@ -2733,15 +2733,42 @@
     display: block;
 }
 
+.tc-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(50, 58, 72, 0.08);
+    overflow: hidden;
+    z-index: 2;
+}
 
+.tc-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: var(--cor-destaque);
+    border-radius: 0 999px 999px 0;
+    transition: none;
+}
+
+.tc-progress-bar.tc-running {
+    width: 100%;
+}
 
 .about-team-carousel {
     background: #F4F5F7;
     border: 1px solid rgba(50, 58, 72, 0.07);
     border-radius: 16px;
     padding: 22px 20px 18px;
-    overflow: hidden;
+    overflow: visible;
+    
+    position: relative;
     opacity: 0;
+    padding-top: 0;
 }
  
 .about-team-carousel.about-revealed {
@@ -2755,6 +2782,8 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--cor-cinza-claro);
+
+    margin-top: 18px;
     margin-bottom: 16px;
 }
  
@@ -2806,7 +2835,7 @@
     filter: blur(4px);
     z-index: 0;
 }
- 
+
 /* ── Foto ── */
 .tc-photo-ring {
     position: relative;
