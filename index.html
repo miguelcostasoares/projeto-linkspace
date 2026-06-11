@@ -1051,6 +1051,124 @@
 
     </main>
 
+    <!-- Footer -->
+    <footer class="footer">
+
+        <!-- ── Faixa principal ── -->
+        <div class="footer-main">
+            <div class="footer-inner">
+
+                <!-- Coluna 1 — Logo + redes sociais -->
+                <div class="footer-col footer-col-brand">
+                    <a href="/" class="footer-logo-link">
+                        <img src="/images/clogo_linkspace.png" alt="LinkSpace" class="footer-logo">
+                    </a>
+                    <p class="footer-slogan">
+                        Facilitamos a procura pelo imóvel ideal para si.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/linkspace.pt" class="footer-social-btn" aria-label="Facebook" target="_blank"
+                            rel="noopener">
+                            <i class="ti ti-brand-facebook" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com/linkspace.pt/" class="footer-social-btn" aria-label="Instagram" target="_blank"
+                            rel="noopener">
+                            <i class="ti ti-brand-instagram" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@www.linkspace.pt" class="footer-social-btn" aria-label="TikTok" target="_blank"
+                            rel="noopener">
+                            <i class="ti ti-brand-tiktok" aria-hidden="true"></i>
+                        </a>
+                        <!-- <a href="https://youtube.com" class="footer-social-btn" aria-label="YouTube" target="_blank"
+                            rel="noopener">
+                            <i class="ti ti-brand-youtube" aria-hidden="true"></i>
+                        </a> -->
+                    </div>
+                </div>
+
+                <!-- Coluna 2 — Contactos -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Contactos</h4>
+                    <ul class="footer-contact-list">
+                        <li>
+                            <i class="ti ti-map-pin" aria-hidden="true"></i>
+                            <span>Rua do Carmo, Número º1<br>4700-309 - Braga, Portugal</span>
+                        </li>
+                        <li>
+                            <i class="ti ti-phone" aria-hidden="true"></i>
+                            <a href="tel:+351253000000">(+351) 936 087 431</a>
+                        </li>
+                        <li>
+                            <i class="ti ti-mail" aria-hidden="true"></i>
+                            <a href="mailto:comercial@linkspace.pt.pt">comercial@linkspace.pt</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 3 — Empresa -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Empresa</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="/quem-somos">Quem Somos</a></li>
+                        <li><a href="/recrutamento">Recrutamento</a></li>
+                        <li><a href="/noticias">Notícias</a></li>
+                        <li><a href="/contactos">Contactos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4 — Imóveis & Serviços -->
+                <div class="footer-col">
+                    <h4 class="footer-col-title">Imóveis</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="/imoveis">Pesquisa avançada</a></li>
+                        <li><a href="/simulador-imt">Simulador de IMT</a></li>
+                        <li><a href="/oferta-imovel">Oferta de imóvel</a></li>
+                        <li><a href="/procuro-imovel">Procuro imóvel</a></li>
+                        <li><a href="/empreendimentos">Empreendimentos</a></li>
+                        <li><a href="/analise-mercado">Análise de mercado</a></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ── Faixa jurídica (acima do rodapé final) ── -->
+        <div class="footer-legal-bar">
+            <div class="footer-inner footer-legal-inner">
+                <span class="footer-brand-name">LinkSpace</span>
+                <nav class="footer-legal-links" aria-label="Links legais">
+                    <a href="/privacidade">Política de Privacidade</a>
+                    <a href="/cookies">Política de Cookies</a>
+                    <a href="https://www.linkspace.pt/canal-de-denuncia" target="_blank">Canal de Denúncias</a>
+                    <a href="https://www.livroreclamacoes.pt/Inicio/" target="_blank">Livro de Reclamações Online</a>
+                    <a href="/gerir-dados">Gerir Dados</a>
+                </nav>
+            </div>
+        </div>
+
+        <!-- ── Rodapé final — créditos ── -->
+        <div class="footer-credits">
+            <div class="footer-inner footer-credits-inner">
+                <span class="footer-credits-copy">
+                    © <span id="footerAno"></span> LinkSpace. Todos os direitos reservados.
+                </span>
+                <a href="https://criatech.com" class="footer-credits-maker" target="_blank" rel="noopener"
+                    aria-label="Criado por CriaTech">
+                    <span class="footer-credits-by">Criado por</span>
+                    <!-- substitua pelo caminho real da vossa logomark -->
+                    <img src="/images/logo-criatech.png" alt="NomeDaEmpresa" class="footer-credits-maker-logo"
+                        onerror="this.style.display='none'">
+                    <span class="footer-credits-maker-name">CriaTech</span>
+                </a>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        document.getElementById('footerAno').textContent = new Date().getFullYear();
+    </script>
+
     <script src="js/tabs.js"></script>
     <script src="js/header.js"></script>
     <script src="js/location-search.js"></script>
@@ -1060,6 +1178,7 @@
     <script src="js/tipos-imoveis.js"></script>
     <script src="js/about-us.js"></script>
     <script src="js/cidades.js"></script>
+    <script src="js/chatbot.js"></script>
 
 </body>
 
