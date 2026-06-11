@@ -470,7 +470,7 @@
         <section class="tipos-imoveis-section">
 
             <div class="tipos-header">
-                
+
                 <h2 class="tipos-titulo">Imóveis que temos <br> para <span class="tipos-titulo-destaque">si</span></h2>
                 <p class="tipos-subtitulo">Explore a nossa oferta imobiliária e garanta as melhores oportunidades do
                     mercado.</p>
@@ -974,6 +974,68 @@
             </div><!-- /about-inner -->
         </section>
 
+        <!-- Destinos Section -->
+        <section class="destinos-section">
+            <div class="destinos-header">
+                <span class="destinos-label">Destinos</span>
+                <h2 class="destinos-titulo">Onde fica a casa dos seus <span>sonhos?</span></h2>
+                <p class="destinos-subtitulo">
+                    Escolha a sua cidade e descubra os imóveis que combinam com o seu próximo capítulo.
+                </p>
+            </div>
+
+            <!-- PALCO da cidade ativa -->
+            <div class="destinos-stage" id="destinosStage">
+                <div class="destinos-slides" id="destinosSlides"></div>
+
+                <div class="destinos-progress">
+                    <div class="destinos-progress-bar" id="destinosProgressBar"></div>
+                </div>
+
+                <!-- desenho (line-art) da cidade -->
+                <div class="destinos-illust" id="destinosIllust" aria-hidden="true"></div>
+
+                <!-- conteúdo -->
+                <div class="destinos-stage-content">
+                    <span class="destino-tag" id="destinoTag">Destino</span>
+                    <h3 class="destino-nome" id="destinoNome">Cidade</h3>
+                    <p class="destino-regiao">
+                        <i class="ti ti-map-pin" aria-hidden="true"></i>
+                        <span id="destinoRegiao">Região</span>
+                    </p>
+                    <div class="destino-stats">
+                        <div class="destino-stat">
+                            <span class="destino-stat-num" id="destinoImoveis">0</span>
+                            <span class="destino-stat-lbl">Imóveis</span>
+                        </div>
+                        <div class="destino-stat">
+                            <span class="destino-stat-num" id="destinoPartir">—</span>
+                            <span class="destino-stat-lbl">A partir de</span>
+                        </div>
+                    </div>
+                    <a href="/imoveis" class="destino-cta" id="destinoCta">
+                        <span>Ver imóveis</span>
+                        <i class="ti ti-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+
+                <!-- navegação do slideshow -->
+                <div class="destinos-stage-nav">
+                    <div class="destinos-slide-dots" id="destinosSlideDots"></div>
+                    <div class="destinos-arrows">
+                        <button class="destinos-arrow" id="destinosPrev" aria-label="Foto anterior">
+                            <i class="ti ti-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <button class="destinos-arrow" id="destinosNext" aria-label="Foto seguinte">
+                            <i class="ti ti-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAIXA seletora de cidades (passar o rato desfoca as outras) -->
+            <div class="destinos-selector" id="destinosSelector"></div>
+        </section>
 
     </main>
 
@@ -985,6 +1047,7 @@
     <script src="js/filtros.js"></script>
     <script src="js/tipos-imoveis.js"></script>
     <script src="js/about-us.js"></script>
+    <script src="js/cidades.js"></script>
 
 </body>
 

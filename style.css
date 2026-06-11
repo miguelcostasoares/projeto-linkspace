@@ -2756,6 +2756,7 @@
 }
 
 .tc-progress-bar.tc-running {
+    transition: width 3500ms linear;   /* ← corresponde ao TC_INTERVAL do JS */
     width: 100%;
 }
 
@@ -2764,8 +2765,7 @@
     border: 1px solid rgba(50, 58, 72, 0.07);
     border-radius: 16px;
     padding: 22px 20px 18px;
-    overflow: visible;
-    
+    overflow: hidden;          /* ← era "visible", tem de ser "hidden" */
     position: relative;
     opacity: 0;
     padding-top: 0;
@@ -3071,7 +3071,560 @@
 .about-team-btn:hover i {
     transform: translateX(3px);
 }
- 
+
+/* Seção onde fica a casa dos seus sonhos? */
+
+.destinos-section {
+    padding: 100px 8%;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* círculos decorativos (mesma linguagem das outras secções) */
+.destinos-section::before {
+    content: '';
+    position: absolute;
+    top: -110px;
+    left: -110px;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    border: 56px solid rgba(255, 104, 3, 0.04);
+    pointer-events: none;
+}
+
+.destinos-section::after {
+    content: '';
+    position: absolute;
+    bottom: -90px;
+    right: -90px;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 48px solid rgba(50, 58, 72, 0.04);
+    pointer-events: none;
+}
+
+/* ── Cabeçalho ── */
+.destinos-header {
+    text-align: center;
+    margin-bottom: 48px;
+    position: relative;
+    z-index: 1;
+}
+
+.destinos-label {
+    display: inline-block;
+    font-family: var(--fonte-padrao);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cor-destaque);
+    margin-bottom: 14px;
+}
+
+.destinos-titulo {
+    font-family: var(--fonte-padrao);
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: var(--cor-cinza-destaque);
+    line-height: 1.2;
+    margin: 0 0 16px;
+}
+
+.destinos-titulo span {
+    color: var(--cor-destaque);
+    font-family: var(--fonte-destaque);
+    font-weight: 700;
+}
+
+.destinos-subtitulo {
+    font-family: var(--fonte-descricao);
+    font-size: 1rem;
+    color: var(--cor-cinza-claro);
+    max-width: 540px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* ── PALCO ── */
+.destinos-stage {
+    --cor-cidade: var(--cor-destaque);
+    --cor-cidade-2: #b24a00;
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+    height: 460px;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #141c2a;
+    box-shadow:
+        0 30px 70px rgba(20, 28, 42, 0.28),
+        0 8px 24px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    transform: translateY(28px);
+}
+
+.destinos-revealed .destinos-stage {
+    animation: destinosUp 0.7s 0.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* slides de foto */
+.destinos-slides {
+    position: absolute;
+    inset: 0;
+}
+
+.destino-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.destino-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.destino-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform 6s ease;
+}
+
+.destino-slide.active img {
+    transform: scale(1.12);
+}
+
+/* overlay para legibilidade + tom da cidade */
+.destinos-stage::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+        linear-gradient(105deg, rgba(15, 21, 32, 0.92) 0%, rgba(15, 21, 32, 0.55) 42%, rgba(15, 21, 32, 0.15) 72%),
+        linear-gradient(0deg, rgba(15, 21, 32, 0.7) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+/* barra de progresso do slideshow */
+.destinos-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.12);
+    z-index: 6;
+}
+
+.destinos-progress-bar {
+    height: 100%;
+    width: 0;
+    background: var(--cor-destaque);
+    border-radius: 0 999px 999px 0;
+}
+
+.destinos-progress-bar.running {
+    transition: width 4s linear;
+    width: 100%;
+}
+
+/* desenho (line-art) da cidade */
+.destinos-illust {
+    position: absolute;
+    top: 50%;
+    right: 4%;
+    transform: translateY(-50%);
+    width: 42%;
+    max-width: 440px;
+    z-index: 3;
+    color: rgba(255, 255, 255, 0.9);
+    pointer-events: none;
+    animation: destinosFloat 6s ease-in-out infinite;
+}
+
+.destinos-illust svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.destinos-illust .d,
+.destinos-illust .ground,
+.destinos-illust .dash {
+    stroke: rgba(255, 255, 255, 0.85);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.destinos-illust .hl {
+    stroke: var(--cor-destaque);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+}
+
+.destinos-illust .ground { stroke: rgba(255, 255, 255, 0.35); }
+.destinos-illust .dash { stroke-dasharray: 3 4 !important; stroke: rgba(255, 255, 255, 0.5); }
+
+.destinos-illust .num {
+    fill: var(--cor-destaque);
+    font-family: var(--fonte-padrao);
+    font-weight: 800;
+    font-size: 17px;
+    stroke: none;
+    opacity: 0;
+    transition: opacity 0.4s 0.9s ease;
+}
+
+.destinos-illust.drawn .num { opacity: 1; }
+
+/* traço a desenhar-se */
+.destinos-illust.drawn .d,
+.destinos-illust.drawn .hl,
+.destinos-illust.drawn .ground {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: destinosDraw 1.3s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+}
+
+.destinos-illust.drawn .hl { animation-duration: 1.6s; }
+.destinos-illust.drawn .ground { animation-delay: 0.5s; }
+
+/* conteúdo (esquerda) */
+.destinos-stage-content {
+    position: absolute;
+    left: 7%;
+    bottom: 52px;
+    z-index: 4;
+    max-width: 50%;
+    color: #fff;
+}
+
+.destino-tag {
+    display: inline-block;
+    font-family: var(--fonte-padrao);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--cor-destaque);
+    padding: 5px 12px;
+    border-radius: 7px;
+    margin-bottom: 14px;
+}
+
+.destino-nome {
+    font-family: var(--fonte-padrao);
+    font-size: 3.1rem;
+    font-weight: 800;
+    line-height: 1.04;
+    margin: 0 0 6px;
+    letter-spacing: -0.5px;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+.destino-regiao {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--fonte-descricao);
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 22px;
+}
+
+.destino-regiao i { color: var(--cor-destaque); font-size: 15px; }
+
+.destino-stats {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.destino-stat {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 10px 16px;
+}
+
+.destino-stat-num {
+    font-family: var(--fonte-titulos);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--cor-destaque);
+    line-height: 1.1;
+    display: block;
+}
+
+.destino-stat-lbl {
+    font-family: var(--fonte-padrao);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.destino-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--fonte-padrao);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--cor-destaque);
+    padding: 13px 26px;
+    border-radius: 11px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.destino-cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 55%;
+    height: 100%;
+    transform: skewX(-20deg);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+    transition: left 0.6s ease;
+}
+
+.destino-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(255, 104, 3, 0.35); }
+.destino-cta:hover::after { left: 170%; }
+.destino-cta i { font-size: 15px; transition: transform 0.3s; }
+.destino-cta:hover i { transform: translateX(4px); }
+
+/* setas + dots do slideshow */
+.destinos-stage-nav {
+    position: absolute;
+    right: 26px;
+    bottom: 26px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.destinos-slide-dots { display: flex; gap: 6px; }
+
+.destino-slide-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.destino-slide-dot.active { width: 20px; background: var(--cor-destaque); }
+
+.destinos-arrows { display: flex; gap: 8px; }
+
+.destinos-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    color: #fff;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s, border-color 0.2s;
+}
+
+.destinos-arrow:hover {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+    transform: scale(1.08);
+}
+
+/* transição ao trocar de cidade */
+.destinos-stage.trocar .destinos-stage-content { animation: destinosSlideText 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* ── FAIXA SELETORA ── */
+.destinos-selector {
+    display: flex;
+    gap: 12px;
+    max-width: 1180px;
+    margin: 28px auto 0;
+    padding: 6px 2px 14px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(50, 58, 72, 0.25) transparent;
+}
+
+.destinos-selector::-webkit-scrollbar { height: 5px; }
+.destinos-selector::-webkit-scrollbar-thumb { background: rgba(50, 58, 72, 0.2); border-radius: 99px; }
+
+.destino-chip {
+    --c-cor: var(--cor-destaque);
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 9px 16px 9px 9px;
+    background: #fff;
+    border: 1px solid rgba(50, 58, 72, 0.1);
+    border-radius: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition:
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        filter 0.35s ease,
+        opacity 0.35s ease;
+    opacity: 0;
+}
+
+.destinos-revealed .destino-chip {
+    animation: destinosUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.destinos-revealed .destino-chip:nth-child(1) { animation-delay: 0.30s; }
+.destinos-revealed .destino-chip:nth-child(2) { animation-delay: 0.36s; }
+.destinos-revealed .destino-chip:nth-child(3) { animation-delay: 0.42s; }
+.destinos-revealed .destino-chip:nth-child(4) { animation-delay: 0.48s; }
+.destinos-revealed .destino-chip:nth-child(5) { animation-delay: 0.54s; }
+.destinos-revealed .destino-chip:nth-child(6) { animation-delay: 0.60s; }
+.destinos-revealed .destino-chip:nth-child(7) { animation-delay: 0.66s; }
+.destinos-revealed .destino-chip:nth-child(8) { animation-delay: 0.72s; }
+.destinos-revealed .destino-chip:nth-child(9) { animation-delay: 0.78s; }
+
+.destino-chip-thumb {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    flex-shrink: 0;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.destino-chip-info { display: flex; flex-direction: column; gap: 1px; }
+
+.destino-chip-nome {
+    font-family: var(--fonte-padrao);
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--cor-cinza-destaque);
+    white-space: nowrap;
+}
+
+.destino-chip-meta {
+    font-family: var(--fonte-descricao);
+    font-size: 10.5px;
+    color: var(--cor-cinza-claro);
+    white-space: nowrap;
+}
+
+.destino-chip:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(50, 58, 72, 0.12);
+    border-color: rgba(255, 104, 3, 0.3);
+}
+
+/* cidade ativa */
+.destino-chip.ativo {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 10px 26px rgba(255, 104, 3, 0.18);
+}
+
+.destino-chip.ativo .destino-chip-thumb {
+    box-shadow: 0 0 0 3px rgba(255, 104, 3, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* EFEITO PEDIDO: ao passar o rato, as outras cidades desfocam */
+.destinos-selector:hover .destino-chip:not(:hover) {
+    filter: blur(2px);
+    opacity: 0.45;
+    transform: scale(0.97);
+}
+
+/* ── Keyframes ── */
+@keyframes destinosUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes destinosSlideText {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes destinosDraw {
+    to { stroke-dashoffset: 0; }
+}
+
+@keyframes destinosFloat {
+    0%, 100% { transform: translateY(-50%); }
+    50%      { transform: translateY(-54%); }
+}
+
+/* ── Responsivo ── */
+@media (max-width: 860px) {
+    .destinos-section { padding: 72px 6%; }
+    .destinos-titulo { font-size: 2rem; }
+    .destinos-stage { height: auto; min-height: 540px; }
+    .destinos-illust {
+        position: relative;
+        top: auto;
+        right: auto;
+        transform: none;
+        width: 60%;
+        margin: 38px auto 0;
+        animation: none;
+    }
+    .destinos-stage-content {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        max-width: 100%;
+        padding: 24px 26px 70px;
+    }
+    .destino-nome { font-size: 2.2rem; }
+    .destinos-stage::after {
+        background: linear-gradient(0deg, rgba(15,21,32,0.92) 30%, rgba(15,21,32,0.45) 100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .destinos-illust { animation: none; }
+    .destinos-illust.drawn .d,
+    .destinos-illust.drawn .hl,
+    .destinos-illust.drawn .ground { animation: none; stroke-dashoffset: 0; }
+    .destino-slide.active img { transform: scale(1.04); transition: none; }
+}
+
 /* ── Keyframes ── */
 @keyframes aboutFadeUp {
     from { opacity: 0; transform: translateY(24px); }

@@ -107,7 +107,7 @@
     var tcNextBtn = document.getElementById('tcNext');
 
     /* ── Barra de progresso do carrossel ── */
-    var tcProgressBar = null;
+    var tcProgressBar = document.getElementById('tcProgressBar');
 
     function tcBuildProgressBar() {
         
