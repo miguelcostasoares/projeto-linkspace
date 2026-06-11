@@ -1023,6 +1023,10 @@
                 <div class="destinos-stage-nav">
                     <div class="destinos-slide-dots" id="destinosSlideDots"></div>
                     <div class="destinos-arrows">
+                        <button class="destinos-arrow destinos-pause" id="destinosPause"
+                            aria-label="Pausar apresentação">
+                            <i class="ti ti-player-pause" aria-hidden="true"></i>
+                        </button>
                         <button class="destinos-arrow" id="destinosPrev" aria-label="Foto anterior">
                             <i class="ti ti-chevron-left" aria-hidden="true"></i>
                         </button>
@@ -1034,7 +1038,15 @@
             </div>
 
             <!-- FAIXA seletora de cidades (passar o rato desfoca as outras) -->
-            <div class="destinos-selector" id="destinosSelector"></div>
+            <div class="destinos-selector-wrap">
+                <button class="destinos-sel-arrow esq oculto" id="destinosSelEsq" aria-label="Ver cidades anteriores">
+                    <i class="ti ti-chevron-left" aria-hidden="true"></i>
+                </button>
+                <div class="destinos-selector" id="destinosSelector"></div>
+                <button class="destinos-sel-arrow dir" id="destinosSelDir" aria-label="Ver mais cidades">
+                    <i class="ti ti-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
         </section>
 
     </main>

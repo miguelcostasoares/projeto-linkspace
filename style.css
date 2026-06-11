@@ -3072,7 +3072,7 @@
     transform: translateX(3px);
 }
 
-/* Seção onde fica a casa dos seus sonhos? */
+/* Destinos Section */
 
 .destinos-section {
     padding: 100px 8%;
@@ -3213,7 +3213,7 @@
     pointer-events: none;
 }
 
-/* barra de progresso do slideshow */
+/* barra de progresso do slideshow (no topo do palco) */
 .destinos-progress {
     position: absolute;
     top: 0;
@@ -3222,18 +3222,26 @@
     height: 3px;
     background: rgba(255, 255, 255, 0.12);
     z-index: 6;
+    /* acompanha o arredondamento do palco para não transbordar o canto */
+    border-radius: 26px 26px 0 0;
+    overflow: hidden;
 }
 
 .destinos-progress-bar {
     height: 100%;
     width: 0;
     background: var(--cor-destaque);
-    border-radius: 0 999px 999px 0;
+    border-radius: 0;
 }
 
+/* animação (em vez de transition) para permitir pausa */
 .destinos-progress-bar.running {
-    transition: width 4s linear;
-    width: 100%;
+    animation: destinosStageProg 4s linear forwards;
+}
+
+@keyframes destinosStageProg {
+    from { width: 0; }
+    to   { width: 100%; }
 }
 
 /* desenho (line-art) da cidade */
@@ -3465,23 +3473,102 @@
     transform: scale(1.08);
 }
 
+/* botão de pausa/play */
+.destinos-pause.pausado {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+}
+
+.destinos-pause.pausado:hover {
+    filter: brightness(1.08);
+}
+
 /* transição ao trocar de cidade */
 .destinos-stage.trocar .destinos-stage-content { animation: destinosSlideText 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
 
 /* ── FAIXA SELETORA ── */
+.destinos-selector-wrap {
+    position: relative;
+    max-width: 1180px;
+    margin: 28px auto 0;
+}
+
+/* máscaras de desvanecimento nas pontas */
+.destinos-selector-wrap::before,
+.destinos-selector-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 14px;
+    width: 56px;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.destinos-selector-wrap::before {
+    left: 0;
+    background: linear-gradient(90deg, #fff 20%, transparent);
+}
+
+.destinos-selector-wrap::after {
+    right: 0;
+    background: linear-gradient(270deg, #fff 20%, transparent);
+}
+
+.destinos-selector-wrap.tem-esq::before { opacity: 1; }
+.destinos-selector-wrap.tem-dir::after  { opacity: 1; }
+
 .destinos-selector {
     display: flex;
     gap: 12px;
-    max-width: 1180px;
-    margin: 28px auto 0;
-    padding: 6px 2px 14px;
+    padding: 6px 4px 14px;
     overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(50, 58, 72, 0.25) transparent;
+    scroll-behavior: smooth;
+    /* esconde a barra de rolagem nativa */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-.destinos-selector::-webkit-scrollbar { height: 5px; }
-.destinos-selector::-webkit-scrollbar-thumb { background: rgba(50, 58, 72, 0.2); border-radius: 99px; }
+.destinos-selector::-webkit-scrollbar { display: none; }
+
+/* setas de navegação da faixa */
+.destinos-sel-arrow {
+    position: absolute;
+    top: calc(50% - 7px);
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid rgba(50, 58, 72, 0.12);
+    box-shadow: 0 6px 18px rgba(50, 58, 72, 0.14);
+    color: var(--cor-cinza-destaque);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s, opacity 0.25s, visibility 0.25s;
+}
+
+.destinos-sel-arrow.esq { left: -10px; }
+.destinos-sel-arrow.dir { right: -10px; }
+
+.destinos-sel-arrow:hover {
+    background: var(--cor-destaque);
+    border-color: var(--cor-destaque);
+    color: #fff;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.destinos-sel-arrow.oculto {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
 .destino-chip {
     --c-cor: var(--cor-destaque);
@@ -3517,17 +3604,122 @@
 .destinos-revealed .destino-chip:nth-child(8) { animation-delay: 0.72s; }
 .destinos-revealed .destino-chip:nth-child(9) { animation-delay: 0.78s; }
 
+/* ── Thumb: contentor do mini mapa ── */
 .destino-chip-thumb {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    font-size: 18px;
     flex-shrink: 0;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: #f4f5f7;
+    border: 1px solid rgba(50, 58, 72, 0.08);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    overflow: hidden;
+}
+
+/* ── Mini mapa SVG ── */
+.chip-mapa {
+    width: 30px;
+    height: 40px;
+}
+
+.chip-mapa-pt {
+    fill: rgba(50, 58, 72, 0.1);
+    stroke: rgba(50, 58, 72, 0.25);
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+    transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+.chip-mapa-halo {
+    fill: transparent;
+    stroke: rgba(255, 104, 3, 0);
+    stroke-width: 1;
+    transition: stroke 0.3s ease, r 0.3s ease;
+}
+
+.chip-mapa-ponto {
+    transition: r 0.3s ease;
+}
+
+/* ativo: destaca o mapa */
+.destino-chip.ativo .destino-chip-thumb {
+    background: rgba(255, 104, 3, 0.06);
+    border-color: rgba(255, 104, 3, 0.25);
+}
+
+.destino-chip.ativo .chip-mapa-pt {
+    fill: rgba(255, 104, 3, 0.08);
+    stroke: rgba(255, 104, 3, 0.35);
+}
+
+.destino-chip.ativo .chip-mapa-halo {
+    stroke: rgba(255, 104, 3, 0.35);
+    stroke-width: 1;
+    animation: chipHaloPulse 2s ease-in-out infinite;
+}
+
+.destino-chip.ativo .chip-mapa-ponto {
+    r: 3;
+}
+
+@keyframes chipHaloPulse {
+    0%, 100% { r: 5; opacity: 0.5; }
+    50%       { r: 7; opacity: 0.15; }
+}
+
+/* hover: antecipa o destaque */
+.destino-chip:not(.ativo):hover .destino-chip-thumb {
+    background: #edf0f4;
+    border-color: rgba(50, 58, 72, 0.16);
+}
+
+.destino-chip:not(.ativo):hover .chip-mapa-pt {
+    fill: rgba(50, 58, 72, 0.15);
+    stroke: rgba(50, 58, 72, 0.35);
+}
+
+/* ── Barra de progresso da cidade no chip ──
+   inserida nas margens para respeitar o canto arredondado */
+.chip-prog-track {
+    position: absolute;
+    bottom: 7px;
+    left: 14px;
+    right: 14px;
+    height: 3px;
+    background: rgba(50, 58, 72, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* só aparece no chip ativo */
+.destino-chip.ativo .chip-prog-track { opacity: 1; }
+
+.chip-prog-bar {
+    display: block;
+    height: 100%;
+    width: 0;
+    background: var(--cor-destaque);
+    border-radius: 999px;
+}
+
+/* duração = SLIDES × FOTO_INTERVAL = 3 × 4000ms = 12s (animação = pode pausar) */
+.chip-prog-bar.running {
+    animation: chipProg 12s linear forwards;
+}
+
+@keyframes chipProg {
+    from { width: 0; }
+    to   { width: 100%; }
+}
+
+/* o chip precisa de position relative para a barra ficar colada no fundo */
+.destino-chip {
+    position: relative;
 }
 
 .destino-chip-info { display: flex; flex-direction: column; gap: 1px; }
@@ -3555,12 +3747,8 @@
 
 /* cidade ativa */
 .destino-chip.ativo {
-    border-color: var(--cor-destaque);
-    box-shadow: 0 10px 26px rgba(255, 104, 3, 0.18);
-}
-
-.destino-chip.ativo .destino-chip-thumb {
-    box-shadow: 0 0 0 3px rgba(255, 104, 3, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 104, 3, 0.4);
+    box-shadow: 0 10px 26px rgba(255, 104, 3, 0.14);
 }
 
 /* EFEITO PEDIDO: ao passar o rato, as outras cidades desfocam */
