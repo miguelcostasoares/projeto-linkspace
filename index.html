@@ -8,22 +8,68 @@
     <link rel="shortcut icon" href="/favicon/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
     <link rel="stylesheet" href="style.css">
+
+    <!-- Seu CSS de idioma -->
+    <link rel="stylesheet" href="lang.css">
 </head>
 
 <body>
-    <header class="header"> <a href="index.html" target="_parent"><img src="/images/clogo_linkspace.png"
-                alt="logo linkspace" id="logo-header"></a>
-        <nav id="nav-header">
-            <div class="dropdown"> <a href="/" class="links"> Empresa <span class="arrow"></span> </a>
-                <div class=dropdown-menu> <a href="/">Quem Somos</a> <a href="/">Recrutamento</a> </div>
+    <header class="header">
+        <a href="index.html" target="_parent" class="header__logo-link">
+            <img src="/images/ologo_linkspace.png" alt="Linkspace" id="logo-header">
+        </a>
+        <nav id="nav-header" aria-label="Navegação principal">
+            <!-- 1. Imóveis -->
+            <div class="dropdown">
+                <a href="/" class="links" aria-haspopup="true" aria-expanded="false">
+                    Imóveis <span class="arrow" aria-hidden="true"></span>
+                </a>
+                <div class="dropdown-menu" role="menu">
+                    <div class="dropdown-item"><a href="/" role="menuitem">Pesquisa avançada</a></div>
+                    <div class="dropdown-item"><a href="/" role="menuitem">Simulador de IMT</a></div>
+                    <div class="dropdown-item"><a href="/" role="menuitem">Oferta de imóvel</a></div>
+                    <div class="dropdown-item"><a href="/" role="menuitem">Procuro imóvel</a></div>
+                </div>
             </div>
-            <div class="dropdown"> <a href="/" class="links"> Imóveis <span class="arrow"></span> </a>
-                <div class="dropdown-menu"> <a href="/">Simulador de IMT</a> <a href="/">Pesquisa avançada</a> <a
-                        href="/">Oferta imóvel</a> <a href="/">Procuro imóvel</a> </div>
-            </div> <a href="/" class="links">Empreendimentos</a>
-            <div class="dropdown"> <a href="/" class="links"> Serviços <span class="arrow"></span> </a>
-                <div class="dropdown-menu"> <a href="/">Análise de mercado</a> </div>
-            </div> <a href="/" class="links">Notícias</a> <a href="/" class="links">Contactos</a>
+            <!-- 2. Empreendimentos -->
+            <a href="/" class="links">Empreendimentos</a>
+            <!-- 3. Serviços — item único vira link direto -->
+            <a href="/" class="links">Análise de mercado</a>
+            <!-- 4. Notícias -->
+            <a href="/" class="links">Notícias</a>
+            <!-- 5. Empresa -->
+            <div class="dropdown">
+                <a href="/" class="links" aria-haspopup="true" aria-expanded="false">
+                    Empresa <span class="arrow" aria-hidden="true"></span>
+                </a>
+                <div class="dropdown-menu" role="menu">
+                    <a href="/" role="menuitem">Quem Somos</a>
+                    <a href="/" role="menuitem">Recrutamento</a>
+                </div>
+            </div>
+            <!-- 6. Contactos -->
+            <a href="/" class="links">Contactos</a>
+
+            <div class="dropdown dropdown--lang">
+                <button class="links lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">
+                    <img src="https://flagcdn.com/pt.svg" alt="Português" class="lang-flag" id="lang-flag-active">
+                    <span class="arrow" aria-hidden="true"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu--lang" role="menu">
+                    <button class="lang-option" data-lang="pt" role="menuitem">
+                        <img src="https://flagcdn.com/pt.svg" alt="Português" class="lang-flag">
+                        <span>Português</span>
+                    </button>
+                    <button class="lang-option" data-lang="es" role="menuitem">
+                        <img src="https://flagcdn.com/es.svg" alt="Español" class="lang-flag">
+                        <span>Español</span>
+                    </button>
+                    <button class="lang-option" data-lang="en" role="menuitem">
+                        <img src="https://flagcdn.com/gb.svg" alt="English" class="lang-flag">
+                        <span>English</span>
+                    </button>
+                </div>
+            </div>
         </nav>
     </header>
     <main>
@@ -466,260 +512,337 @@
             </div>
         </section>
 
-        <!-- Section Tipos de Imóveis -->
-        <section class="tipos-imoveis-section">
-
-            <div class="tipos-header">
-
-                <h2 class="tipos-titulo">Imóveis que temos <br> para <span class="tipos-titulo-destaque">si</span></h2>
-                <p class="tipos-subtitulo">Explore a nossa oferta imobiliária e garanta as melhores oportunidades do
-                    mercado.</p>
+        <section class="tipos-section">
+ 
+        <div class="tipos-header">
+            <span class="tipos-label">Portfólio</span>
+            <h2 class="tipos-titulo">Imóveis que temos <br>para <span class="tipos-titulo-destaque">si</span></h2>
+            <p class="tipos-subtitulo">Explore a nossa oferta imobiliária e garanta as melhores oportunidades do mercado.</p>
+        </div>
+    
+        <div class="tipos-grid">
+    
+            <!-- ── APARTAMENTOS ── -->
+            <div class="tipo-card-wrap">
+                <article class="tipo-card" data-reveal data-lat="38.72" data-lng="-9.14" data-zoom="9">
+                    <div class="tipo-card-left">
+                        <div class="tipo-card-top">
+                            <div class="tipo-card-meta">
+                                <span class="tipo-card-categoria">Residencial</span>
+                                <span class="tipo-card-badge">52 imóveis</span>
+                            </div>
+                            <h3 class="tipo-card-titulo">Apartamentos</h3>
+                            <p class="tipo-card-descricao">Apartamentos modernos com excelente localização e vista privilegiada em Lisboa e Faro.</p>
+                        </div>
+    
+                        <div class="tipo-card-chips-wrap">
+                            <span class="tipo-card-chips-label">Tipologias disponíveis</span>
+                            <div class="tipo-card-chips">
+                                <span class="tipo-chip">T1</span>
+                                <span class="tipo-chip">T2</span>
+                                <span class="tipo-chip">T3</span>
+                                <span class="tipo-chip">Cobertura</span>
+                                <span class="tipo-chip">Duplex</span>
+                            </div>
+                        </div>
+    
+                        <div class="tipo-card-rodape">
+                            <div class="tipo-card-localizacao">
+                                <svg class="tipo-loc-icon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5C12.5 3.51 10.49 1.5 8 1.5zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+                                <span>Lisboa · Faro · Porto</span>
+                            </div>
+                            <div class="tipo-card-preco-btn">
+                                <div class="tipo-card-preco">
+                                    <span class="tipo-preco-label">A partir de</span>
+                                    <span class="tipo-preco-valor">340.000€</span>
+                                </div>
+                                <a href="#" class="tipo-card-btn">
+                                    Ver todos
+                                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tipo-card-mapa-wrap">
+                        <div class="tipo-card-mapa" data-lat="38.72" data-lng="-9.14" data-zoom="8"></div>
+                        <div class="tipo-card-mapa-overlay"></div>
+                        <div class="tipo-card-mapa-pins">
+                            <span class="mapa-pin" data-lat="38.716" data-lng="-9.139"></span>
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="37.019" data-lng="-7.930"></span>
+                        </div>
+                    </div>
+                </article>
             </div>
-
-            <div class="tipos-grid">
-                <div class="tipo-card" data-reveal>
-                    <div class="tipo-card-inner">
-                        <div class="tipo-card-front">
-                            <div class="tipo-icon-wrapper">
-                                <i class="ti ti-mountain" aria-hidden="true"></i>
+    
+            <!-- ── MORADIAS ── -->
+            <div class="tipo-card-wrap">
+                <article class="tipo-card" data-reveal data-lat="41.55" data-lng="-8.42" data-zoom="10">
+                    <div class="tipo-card-left">
+                        <div class="tipo-card-top">
+                            <div class="tipo-card-meta">
+                                <span class="tipo-card-categoria">Residencial</span>
+                                <span class="tipo-card-badge">34 imóveis</span>
                             </div>
-                            <h3 class="tipo-nome">Terrenos</h3>
-                            <span class="tipo-count">18 disponíveis</span>
+                            <h3 class="tipo-card-titulo">Moradias</h3>
+                            <p class="tipo-card-descricao">Moradias espaçosas com jardim e piscina nas melhores zonas residenciais do norte.</p>
                         </div>
-                        <div class="tipo-card-overlay">
-                            <div class="overlay-info">
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">Localização</span>
-                                    <span class="overlay-info-valor">Braga · Algarve</span>
-                                </div>
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">A partir de</span>
-                                    <span class="overlay-info-valor destaque">150.000€</span>
-                                </div>
+    
+                        <div class="tipo-card-chips-wrap">
+                            <span class="tipo-card-chips-label">Tipologias disponíveis</span>
+                            <div class="tipo-card-chips">
+                                <span class="tipo-chip">T2</span>
+                                <span class="tipo-chip">T3</span>
+                                <span class="tipo-chip">T4</span>
+                                <span class="tipo-chip">T5</span>
+                                <span class="tipo-chip">Com piscina</span>
                             </div>
-                            <div class="overlay-divider"></div>
-                            <div class="overlay-tags">
-                                <span class="overlay-tag">Urbano</span>
-                                <span class="overlay-tag">Rústico</span>
-                                <span class="overlay-tag">Industrial</span>
+                        </div>
+    
+                        <div class="tipo-card-rodape">
+                            <div class="tipo-card-localizacao">
+                                <svg class="tipo-loc-icon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5C12.5 3.51 10.49 1.5 8 1.5zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+                                <span>Vila Verde · Braga · Barcelos</span>
                             </div>
-                            <div class="overlay-footer">
-                                <a href="#" class="tipo-btn">
-                                    <span>Ver todos</span>
-                                    <i class="ti ti-arrow-right"></i>
+                            <div class="tipo-card-preco-btn">
+                                <div class="tipo-card-preco">
+                                    <span class="tipo-preco-label">A partir de</span>
+                                    <span class="tipo-preco-valor">400.000€</span>
+                                </div>
+                                <a href="#" class="tipo-card-btn">
+                                    Ver todas
+                                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                 </a>
-                                <span class="overlay-contador">
-                                    <i class="ti ti-building-estate"></i>
-                                    18 imóveis
-                                </span>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="tipo-card" data-reveal>
-                    <div class="tipo-card-inner">
-                        <div class="tipo-card-front">
-                            <div class="tipo-icon-wrapper">
-                                <i class="ti ti-home" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="tipo-nome">Moradias</h3>
-                            <span class="tipo-count">34 disponíveis</span>
-                        </div>
-                        <div class="tipo-card-overlay">
-                            <div class="overlay-info">
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">Localização</span>
-                                    <span class="overlay-info-valor">Vila Verde · Braga</span>
-                                </div>
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">A partir de</span>
-                                    <span class="overlay-info-valor destaque">400.000€</span>
-                                </div>
-                            </div>
-                            <div class="overlay-divider"></div>
-                            <div class="overlay-tags">
-                                <span class="overlay-tag">T2</span>
-                                <span class="overlay-tag">T3</span>
-                                <span class="overlay-tag">T4</span>
-                                <span class="overlay-tag">Com piscina</span>
-                            </div>
-                            <div class="overlay-footer">
-                                <a href="#" class="tipo-btn">
-                                    <span>Ver todos</span>
-                                    <i class="ti ti-arrow-right"></i>
-                                </a>
-                                <span class="overlay-contador">
-                                    <i class="ti ti-building-estate"></i>
-                                    34 imóveis
-                                </span>
-                            </div>
+    
+                    <div class="tipo-card-mapa-wrap">
+                        <div class="tipo-card-mapa" data-lat="41.55" data-lng="-8.42" data-zoom="10"></div>
+                        <div class="tipo-card-mapa-overlay"></div>
+                        <div class="tipo-card-mapa-pins">
+                            <span class="mapa-pin" data-lat="41.649" data-lng="-8.441"></span>
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="41.649" data-lng="-8.157"></span> <!-- Vila Verde -->
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="41.531" data-lng="-8.619"></span>
                         </div>
                     </div>
-                </div>
-
-                <div class="tipo-card" data-reveal>
-                    <div class="tipo-card-inner">
-                        <div class="tipo-card-front">
-                            <div class="tipo-icon-wrapper">
-                                <i class="ti ti-building" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="tipo-nome">Apartamentos</h3>
-                            <span class="tipo-count">52 disponíveis</span>
-                        </div>
-                        <div class="tipo-card-overlay">
-                            <div class="overlay-info">
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">Localização</span>
-                                    <span class="overlay-info-valor">Lisboa · Faro</span>
-                                </div>
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">A partir de</span>
-                                    <span class="overlay-info-valor destaque">340.000€</span>
-                                </div>
-                            </div>
-                            <div class="overlay-divider"></div>
-                            <div class="overlay-tags">
-                                <span class="overlay-tag">T1</span>
-                                <span class="overlay-tag">T2</span>
-                                <span class="overlay-tag">T3</span>
-                                <span class="overlay-tag">Cobertura</span>
-                            </div>
-                            <div class="overlay-footer">
-                                <a href="#" class="tipo-btn">
-                                    <span>Ver todos</span>
-                                    <i class="ti ti-arrow-right"></i>
-                                </a>
-                                <span class="overlay-contador">
-                                    <i class="ti ti-building-estate"></i>
-                                    52 imóveis
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tipo-card" data-reveal>
-                    <div class="tipo-card-inner">
-                        <div class="tipo-card-front">
-                            <div class="tipo-icon-wrapper">
-                                <i class="ti ti-building-skyscraper" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="tipo-nome">Prédios</h3>
-                            <span class="tipo-count">9 disponíveis</span>
-                        </div>
-                        <div class="tipo-card-overlay">
-                            <div class="overlay-info">
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">Localização</span>
-                                    <span class="overlay-info-valor">Lisboa · Braga</span>
-                                </div>
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">A partir de</span>
-                                    <span class="overlay-info-valor destaque">850.000€</span>
-                                </div>
-                            </div>
-                            <div class="overlay-divider"></div>
-                            <div class="overlay-tags">
-                                <span class="overlay-tag">Residencial</span>
-                                <span class="overlay-tag">Misto</span>
-                                <span class="overlay-tag">Investimento</span>
-                            </div>
-                            <div class="overlay-footer">
-                                <a href="#" class="tipo-btn">
-                                    <span>Ver todos</span>
-                                    <i class="ti ti-arrow-right"></i>
-                                </a>
-                                <span class="overlay-contador">
-                                    <i class="ti ti-building-estate"></i>
-                                    9 imóveis
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tipo-card" data-reveal>
-                    <div class="tipo-card-inner">
-                        <div class="tipo-card-front">
-                            <div class="tipo-icon-wrapper">
-                                <i class="ti ti-trees" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="tipo-nome">Quintas / Herdades</h3>
-                            <span class="tipo-count">11 disponíveis</span>
-                        </div>
-                        <div class="tipo-card-overlay">
-                            <div class="overlay-info">
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">Localização</span>
-                                    <span class="overlay-info-valor">Santarém · Setúbal</span>
-                                </div>
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">A partir de</span>
-                                    <span class="overlay-info-valor destaque">159.000€</span>
-                                </div>
-                            </div>
-                            <div class="overlay-divider"></div>
-                            <div class="overlay-tags">
-                                <span class="overlay-tag">Agrícola</span>
-                                <span class="overlay-tag">Turismo rural</span>
-                                <span class="overlay-tag">T2</span>
-                            </div>
-                            <div class="overlay-footer">
-                                <a href="#" class="tipo-btn">
-                                    <span>Ver todos</span>
-                                    <i class="ti ti-arrow-right"></i>
-                                </a>
-                                <span class="overlay-contador">
-                                    <i class="ti ti-building-estate"></i>
-                                    11 imóveis
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tipo-card" data-reveal>
-                    <div class="tipo-card-inner">
-                        <div class="tipo-card-front">
-                            <div class="tipo-icon-wrapper">
-                                <i class="ti ti-building-store" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="tipo-nome">Espaços Comerciais</h3>
-                            <span class="tipo-count">23 disponíveis</span>
-                        </div>
-                        <div class="tipo-card-overlay">
-                            <div class="overlay-info">
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">Localização</span>
-                                    <span class="overlay-info-valor">Lisboa · Porto</span>
-                                </div>
-                                <div class="overlay-info-item">
-                                    <span class="overlay-info-label">A partir de</span>
-                                    <span class="overlay-info-valor destaque">200.000€</span>
-                                </div>
-                            </div>
-                            <div class="overlay-divider"></div>
-                            <div class="overlay-tags">
-                                <span class="overlay-tag">Loja</span>
-                                <span class="overlay-tag">Escritório</span>
-                                <span class="overlay-tag">Armazém</span>
-                            </div>
-                            <div class="overlay-footer">
-                                <a href="#" class="tipo-btn">
-                                    <span>Ver todos</span>
-                                    <i class="ti ti-arrow-right"></i>
-                                </a>
-                                <span class="overlay-contador">
-                                    <i class="ti ti-building-estate"></i>
-                                    23 imóveis
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </article>
             </div>
-        </section>
+    
+            <!-- ── TERRENOS ── -->
+            <div class="tipo-card-wrap">
+                <article class="tipo-card" data-reveal>
+                    <div class="tipo-card-left">
+                        <div class="tipo-card-top">
+                            <div class="tipo-card-meta">
+                                <span class="tipo-card-categoria">Terreno</span>
+                                <span class="tipo-card-badge">18 imóveis</span>
+                            </div>
+                            <h3 class="tipo-card-titulo">Terrenos</h3>
+                            <p class="tipo-card-descricao">Terrenos urbanos, rústicos e industriais com licenciamento facilitado em todo o país.</p>
+                        </div>
+    
+                        <div class="tipo-card-chips-wrap">
+                            <span class="tipo-card-chips-label">Categorias</span>
+                            <div class="tipo-card-chips">
+                                <span class="tipo-chip">Urbano</span>
+                                <span class="tipo-chip">Rústico</span>
+                                <span class="tipo-chip">Industrial</span>
+                                <span class="tipo-chip">Agrícola</span>
+                            </div>
+                        </div>
+    
+                        <div class="tipo-card-rodape">
+                            <div class="tipo-card-localizacao">
+                                <svg class="tipo-loc-icon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5C12.5 3.51 10.49 1.5 8 1.5zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+                                <span>Braga · Algarve · Alentejo</span>
+                            </div>
+                            <div class="tipo-card-preco-btn">
+                                <div class="tipo-card-preco">
+                                    <span class="tipo-preco-label">A partir de</span>
+                                    <span class="tipo-preco-valor">150.000€</span>
+                                </div>
+                                <a href="#" class="tipo-card-btn">
+                                    Ver todos
+                                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tipo-card-mapa-wrap">
+                        <div class="tipo-card-mapa" data-lat="39.5" data-lng="-8.0" data-zoom="6"></div>
+                        <div class="tipo-card-mapa-overlay"></div>
+                        <div class="tipo-card-mapa-pins">
+                            <span class="mapa-pin" data-lat="41.649" data-lng="-8.441"></span>         <!-- Braga -->
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="37.019" data-lng="-7.930"></span>  <!-- Faro/Algarve -->
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="38.566" data-lng="-7.909"></span>  <!-- Évora/Alentejo -->
+                        </div>
+                    </div>
+                </article>
+            </div>
+    
+            <!-- ── PRÉDIOS ── -->
+            <div class="tipo-card-wrap">
+                <article class="tipo-card" data-reveal>
+                    <div class="tipo-card-left">
+                        <div class="tipo-card-top">
+                            <div class="tipo-card-meta">
+                                <span class="tipo-card-categoria">Investimento</span>
+                                <span class="tipo-card-badge">9 imóveis</span>
+                            </div>
+                            <h3 class="tipo-card-titulo">Prédios</h3>
+                            <p class="tipo-card-descricao">Edifícios inteiros para investimento, reabilitação urbana ou rendimento imediato nas capitais.</p>
+                        </div>
+    
+                        <div class="tipo-card-chips-wrap">
+                            <span class="tipo-card-chips-label">Perfis de investimento</span>
+                            <div class="tipo-card-chips">
+                                <span class="tipo-chip">Residencial</span>
+                                <span class="tipo-chip">Misto</span>
+                                <span class="tipo-chip">Rendimento</span>
+                                <span class="tipo-chip">Reabilitação</span>
+                            </div>
+                        </div>
+    
+                        <div class="tipo-card-rodape">
+                            <div class="tipo-card-localizacao">
+                                <svg class="tipo-loc-icon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5C12.5 3.51 10.49 1.5 8 1.5zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+                                <span>Lisboa · Braga · Porto</span>
+                            </div>
+                            <div class="tipo-card-preco-btn">
+                                <div class="tipo-card-preco">
+                                    <span class="tipo-preco-label">A partir de</span>
+                                    <span class="tipo-preco-valor">850.000€</span>
+                                </div>
+                                <a href="#" class="tipo-card-btn">
+                                    Ver todos
+                                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tipo-card-mapa-wrap">
+                        <div class="tipo-card-mapa" data-lat="39.6" data-lng="-8.9" data-zoom="7"></div>
+                        <div class="tipo-card-mapa-overlay"></div>
+                        <div class="tipo-card-mapa-pins">
+                            <span class="mapa-pin" data-lat="38.716" data-lng="-9.139"></span>
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="41.649" data-lng="-8.441"></span> <!-- Braga -->
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="41.149" data-lng="-8.611"></span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+    
+            <!-- ── QUINTAS / HERDADES ── -->
+            <div class="tipo-card-wrap">
+                <article class="tipo-card" data-reveal>
+                    <div class="tipo-card-left">
+                        <div class="tipo-card-top">
+                            <div class="tipo-card-meta">
+                                <span class="tipo-card-categoria">Rural</span>
+                                <span class="tipo-card-badge">11 imóveis</span>
+                            </div>
+                            <h3 class="tipo-card-titulo">Quintas &amp; Herdades</h3>
+                            <p class="tipo-card-descricao">Propriedades rurais únicas para turismo, agricultura ou retiro privado em plena natureza.</p>
+                        </div>
+    
+                        <div class="tipo-card-chips-wrap">
+                            <span class="tipo-card-chips-label">Utilizações</span>
+                            <div class="tipo-card-chips">
+                                <span class="tipo-chip">Agrícola</span>
+                                <span class="tipo-chip">Turismo rural</span>
+                                <span class="tipo-chip">Habitação</span>
+                                <span class="tipo-chip">T2</span>
+                            </div>
+                        </div>
+    
+                        <div class="tipo-card-rodape">
+                            <div class="tipo-card-localizacao">
+                                <svg class="tipo-loc-icon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5C12.5 3.51 10.49 1.5 8 1.5zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+                                <span>Santarém · Setúbal · Évora</span>
+                            </div>
+                            <div class="tipo-card-preco-btn">
+                                <div class="tipo-card-preco">
+                                    <span class="tipo-preco-label">A partir de</span>
+                                    <span class="tipo-preco-valor">159.000€</span>
+                                </div>
+                                <a href="#" class="tipo-card-btn">
+                                    Ver quintas
+                                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tipo-card-mapa-wrap">
+                        <div class="tipo-card-mapa" data-lat="38.6" data-lng="-8.5" data-zoom="8"></div>
+                        <div class="tipo-card-mapa-overlay"></div>
+                        <div class="tipo-card-mapa-pins">
+                            <span class="mapa-pin" data-lat="39.236" data-lng="-8.685"></span>         <!-- Santarém -->
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="38.524" data-lng="-8.893"></span>  <!-- Setúbal -->
+                        </div>
+                    </div>
+                </article>
+            </div>
+    
+            <!-- ── ESPAÇOS COMERCIAIS ── -->
+            <div class="tipo-card-wrap">
+                <article class="tipo-card" data-reveal>
+                    <div class="tipo-card-left">
+                        <div class="tipo-card-top">
+                            <div class="tipo-card-meta">
+                                <span class="tipo-card-categoria">Comercial</span>
+                                <span class="tipo-card-badge">23 imóveis</span>
+                            </div>
+                            <h3 class="tipo-card-titulo">Espaços Comerciais</h3>
+                            <p class="tipo-card-descricao">Lojas, escritórios e armazéns estrategicamente localizados nos principais centros urbanos.</p>
+                        </div>
+    
+                        <div class="tipo-card-chips-wrap">
+                            <span class="tipo-card-chips-label">Categorias</span>
+                            <div class="tipo-card-chips">
+                                <span class="tipo-chip">Loja</span>
+                                <span class="tipo-chip">Escritório</span>
+                                <span class="tipo-chip">Armazém</span>
+                                <span class="tipo-chip">Clínica</span>
+                            </div>
+                        </div>
+    
+                        <div class="tipo-card-rodape">
+                            <div class="tipo-card-localizacao">
+                                <svg class="tipo-loc-icon" width="13" height="13" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5s4.5-4.75 4.5-8.5C12.5 3.51 10.49 1.5 8 1.5zm0 6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>
+                                <span>Lisboa · Porto · Coimbra</span>
+                            </div>
+                            <div class="tipo-card-preco-btn">
+                                <div class="tipo-card-preco">
+                                    <span class="tipo-preco-label">A partir de</span>
+                                    <span class="tipo-preco-valor">200.000€</span>
+                                </div>
+                                <a href="#" class="tipo-card-btn">
+                                    Ver espaços
+                                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="tipo-card-mapa-wrap">
+                        <div class="tipo-card-mapa" data-lat="39.7" data-lng="-8.8" data-zoom="7"></div>
+                        <div class="tipo-card-mapa-overlay"></div>
+                        <div class="tipo-card-mapa-pins">
+                            <span class="mapa-pin" data-lat="38.716" data-lng="-9.139"></span>         <!-- Lisboa -->
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="41.149" data-lng="-8.611"></span>  <!-- Porto -->
+                            <span class="mapa-pin mapa-pin--secondary" data-lat="40.203" data-lng="-8.410"></span>  <!-- Coimbra -->
+                        </div>
+                    </div>
+                </article>
+            </div>
+    
+        </div>
+    
+    </section>
 
         <section class="about-us">
             <div class="about-inner">
@@ -1169,6 +1292,8 @@
         document.getElementById('footerAno').textContent = new Date().getFullYear();
     </script>
 
+    <div id="google_translate_element" style="display:none;"></div>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="js/tabs.js"></script>
     <script src="js/header.js"></script>
     <script src="js/location-search.js"></script>
@@ -1179,7 +1304,7 @@
     <script src="js/about-us.js"></script>
     <script src="js/cidades.js"></script>
     <script src="js/chatbot.js"></script>
-
+    <script src="js/lang.js"></script>
 </body>
 
 </html>
