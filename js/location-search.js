@@ -3,8 +3,8 @@ function initLocationSearch() {
     const placeholder = document.getElementById('locationPlaceholder');
     if (!input) return;
 
-    // Texto rotativo
-    const placeholders = [
+    // Texto rotativo (PT por defeito; traduzido por lang.js se presente)
+    const placeholdersPT = [
         'Digite a freguesia...',
         'Digite o concelho...',
         'Digite o distrito...',
@@ -12,11 +12,20 @@ function initLocationSearch() {
         'Ex: Braga, Porto, Lisboa...',
     ];
 
+    // Lê a lista na língua atual (definida por lang.js) com fallback para PT
+    function getPlaceholders() {
+        return (window.__lsPlaceholders && window.__lsPlaceholders.length)
+            ? window.__lsPlaceholders
+            : placeholdersPT;
+    }
+
     let index = 0, charIndex = 0, apagando = false, pausar = false;
 
     function escrever() {
         if (pausar || document.activeElement === input) return;
-        const texto = placeholders[index];
+        const lista = getPlaceholders();
+        if (index >= lista.length) index = 0;
+        const texto = lista[index];
         if (!apagando) {
             placeholder.textContent = texto.slice(0, charIndex++);
             if (charIndex > texto.length) {
@@ -27,7 +36,7 @@ function initLocationSearch() {
             placeholder.textContent = texto.slice(0, charIndex--);
             if (charIndex < 0) {
                 apagando = false;
-                index = (index + 1) % placeholders.length;
+                index = (index + 1) % lista.length;
                 charIndex = 0;
             }
         }
