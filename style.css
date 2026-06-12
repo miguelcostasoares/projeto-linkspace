@@ -1924,8 +1924,7 @@
     position: relative;
     overflow: hidden;
 }
- 
-/* Ornamentos sutis de fundo */
+
 .tipos-section::before {
     content: '';
     position: absolute;
@@ -1938,7 +1937,7 @@
     pointer-events: none;
     z-index: 0;
 }
- 
+
 .tipos-section::after {
     content: '';
     position: absolute;
@@ -1951,7 +1950,7 @@
     pointer-events: none;
     z-index: 0;
 }
- 
+
 /* ── Header ── */
 .tipos-header {
     text-align: center;
@@ -1959,7 +1958,7 @@
     position: relative;
     z-index: 1;
 }
- 
+
 .tipos-label {
     display: inline-block;
     font-size: 13px;
@@ -1969,7 +1968,7 @@
     color: var(--cor-destaque);
     margin-bottom: 12px;
 }
- 
+
 .tipos-titulo {
     font-size: 2.9rem;
     font-weight: 800;
@@ -1977,11 +1976,11 @@
     color: var(--cor-cinza-destaque);
     margin-bottom: 16px;
 }
- 
+
 .tipos-titulo-destaque {
     color: var(--cor-destaque);
 }
- 
+
 .tipos-subtitulo {
     font-size: 1.05rem;
     color: #A3A8B0;
@@ -1989,7 +1988,7 @@
     margin: 0 auto;
     line-height: 1.65;
 }
- 
+
 /* ── Grid ── */
 .tipos-grid {
     display: grid;
@@ -2000,7 +1999,7 @@
     position: relative;
     z-index: 1;
 }
- 
+
 /* ===================== CARD WRAPPER ===================== */
 .tipo-card-wrap {
     border-radius: 18px;
@@ -2015,7 +2014,6 @@
     transform: translateY(-5px) scale(1.015);
 }
 
-/* ── CARD: sem hover próprio de transform/shadow ── */
 .tipo-card {
     display: flex;
     flex-direction: row;
@@ -2026,22 +2024,19 @@
     position: relative;
     overflow: hidden;
     min-height: 220px;
-    /* transition só para border-color */
     transition: border-color 0.38s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Border-color ainda reage, mas via wrapper */
 .tipo-card-wrap:hover .tipo-card {
     border-color: rgba(255, 98, 0, 0.60);
 }
- 
-/* Barra laranja no topo ativa via wrapper */
+
 .tipo-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 3px;
-    background: linear-gradient(90deg, var(--cor-destaque), #e05500);
+    background: var(--cor-destaque);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.72s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -2052,26 +2047,23 @@
     transform: scaleX(1);
 }
 
-/* Chips reagem via wrapper também */
 .tipo-card-wrap:hover .tipo-chip {
     background: rgba(255, 98, 0, 0.06);
     border-color: rgba(255, 98, 0, 0.28);
     color: #C84E00;
 }
 
-/* Remove o translateY do card que conflitava */
 .tipo-card:hover {
     border-color: unset;
     transform: none;
 }
- 
-/* ── Lado esquerdo: conteúdo ── */
 
+/* ── Lado esquerdo: conteúdo ── */
 .tipo-card-left {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding: 28px 28px 22px;
+    padding: 28px 28px 0;
     min-width: 0;
 }
 
@@ -2080,11 +2072,10 @@
     margin-bottom: 18px;
 }
 
-/* Meta: categoria + badge */
+/* Meta: só categoria agora */
 .tipo-card-meta {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 12px;
 }
 
@@ -2100,17 +2091,6 @@
     border: 1px solid rgba(255, 98, 0, 0.15);
 }
 
-.tipo-card-badge {
-    font-size: 12px;
-    font-weight: 700;
-    color: #16A34A;
-    background: #F0FDF4;
-    padding: 3px 10px;
-    border-radius: 999px;
-    border: 1px solid #BBF7D0;
-    letter-spacing: -0.2px;
-}
- 
 /* Título e descrição */
 .tipo-card-titulo {
     font-size: 1.35rem;
@@ -2133,6 +2113,7 @@
 }
 
 .tipo-card-chips-label {
+    display: block;
     font-size: 9.5px;
     font-weight: 700;
     color: #B0B8C4;
@@ -2159,66 +2140,65 @@
     letter-spacing: 0.1px;
 }
 
-.tipo-card:hover .tipo-chip {
-    background: rgba(255, 98, 0, 0.06);
-    border-color: rgba(255, 98, 0, 0.28);
-    color: #C84E00;
-}
- 
-/* Rodapé */
+/* ── Rodapé ── */
 .tipo-card-rodape {
     border-top: 1px solid #F1F3F5;
-    padding-top: 16px;
+    padding: 16px 28px 30px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    margin: 0 -28px -22px -28px;
+    background: #232C3C;
 }
 
 .tipo-card-localizacao {
     display: flex;
     align-items: center;
     gap: 5px;
-    font-size: 0.8rem;
-    color: #4b55637a;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.833);
     font-weight: 600;
     letter-spacing: 0.1px;
 }
 
 .tipo-loc-icon {
-    color: var(--cor-destaque);
+    color: #ff6d0c;
     opacity: 1;
     flex-shrink: 0;
 }
 
-.tipo-card-preco-btn {
+/* ── Rodapé bottom: count + botão ── */
+.tipo-card-rodape-bottom {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
 }
 
-.tipo-card-preco {
+.tipo-card-count {
     display: flex;
-    flex-direction: column;
-    gap: 1px;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 5px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
-.tipo-preco-label {
-    font-size: 9.5px;
-    font-weight: 700;
-    color: #B0B8C4;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.tipo-card-count svg {
+    color: rgba(255, 255, 255, 0.9);
+    flex-shrink: 0;
 }
 
-.tipo-preco-valor {
-    font-size: 1.3rem;
-    font-weight: 900;
-    color: #0F172A;
-    letter-spacing: -0.8px;
-    line-height: 1;
+.tipo-card-count strong {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.9rem;
 }
- 
+
 /* Botão */
 .tipo-card-btn {
     display: inline-flex;
@@ -2241,7 +2221,6 @@
         background 0.3s ease;
 }
 
-/* Shimmer */
 .tipo-card-btn::before {
     content: '';
     position: absolute;
@@ -2257,15 +2236,8 @@
     transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Feixe de luz (barra inferior) */
-
-
 .tipo-card-btn:hover::before {
     left: 140%;
-}
-
-.tipo-card-btn:hover::after {
-    transform: scaleX(1);
 }
 
 .tipo-card-btn:hover {
@@ -2285,12 +2257,11 @@
     transform: translateX(4px);
 }
 
-/* Remove os efeitos antigos que vinham do hover do card */
 .tipo-card:hover .tipo-card-btn {
     background: var(--cor-destaque);
     gap: 8px;
 }
- 
+
 /* ── Lado direito: mapa ── */
 .tipo-card-mapa-wrap {
     position: relative;
@@ -2299,14 +2270,13 @@
     border-left: 1px solid #F3F4F6;
     overflow: hidden;
 }
- 
+
 .tipo-card-mapa {
     width: 100%;
     height: 100%;
     min-height: 220px;
 }
- 
-/* Gradiente da borda esquerda pra integrar com o card */
+
 .tipo-card-mapa-overlay {
     position: absolute;
     inset: 0;
@@ -2318,15 +2288,14 @@
     pointer-events: none;
     z-index: 2;
 }
- 
-/* Pins sobre o mapa */
+
 .tipo-card-mapa-pins {
     position: absolute;
     inset: 0;
     pointer-events: none;
     z-index: 3;
 }
- 
+
 .mapa-pin {
     position: absolute;
     width: 10px;
@@ -2338,30 +2307,26 @@
     transform: translate(-50%, -50%);
     z-index: 4;
 }
- 
+
 .mapa-pin--secondary {
-    background: #3B82F6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+    background: var(--cor-azul-destaque);
+    box-shadow: 0 0 0 3px rgba(3, 91, 169, 0.25);
     width: 8px;
     height: 8px;
 }
-  
+
 /* ===================== LEAFLET OVERRIDE ===================== */
- 
-/* Esconde os controles de zoom e attribution do Leaflet */
 .tipo-card-mapa .leaflet-control-zoom,
 .tipo-card-mapa .leaflet-control-attribution {
     display: none !important;
 }
- 
-/* Garante que o mapa preencha o container */
+
 .tipo-card-mapa .leaflet-container {
     width: 100%;
     height: 100%;
     background: #F3F4F6;
 }
- 
-/* Leve dessaturação no mapa pra não competir com o conteúdo */
+
 .tipo-card-mapa .leaflet-tile {
     filter: saturate(0.75) brightness(1.02);
 }
