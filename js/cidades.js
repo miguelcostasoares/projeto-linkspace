@@ -85,7 +85,7 @@
             partir: '175 000 €', tag: 'Mar & Santa Luzia', cor: '#3A7CA5', cor2: '#214B66',
             px: 18, py: 16,
             fotos: ['/images/cidades/viana-1.jpg', '/images/cidades/viana-2.jpg', '/images/cidades/viana-3.jpg'],
-            svg:
+            svg: 
                 '<svg viewBox="0 0 240 170" fill="none">' +
                 '<path class="hl" pathLength="1" d="M96 80 a24 24 0 0 1 48 0"/>' +
                 '<rect class="d" pathLength="1" x="92" y="80" width="56" height="48"/>' +

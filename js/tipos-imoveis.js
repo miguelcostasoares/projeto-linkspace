@@ -55,9 +55,13 @@
                 keyboard: false,
             });
 
-            L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_bright/{z}/{x}/{y}{r}.png', {
-                maxZoom: 20,
-            }).addTo(map);
+            L.tileLayer(
+            'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+            {
+                subdomains: 'abcd',
+                maxZoom: 20
+            }
+            ).addTo(map);
 
             // Cria ícone laranja customizado
             const pinPrimary = L.divIcon({
