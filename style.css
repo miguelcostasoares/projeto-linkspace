@@ -1954,39 +1954,67 @@
 /* ── Header ── */
 .tipos-header {
     text-align: center;
-    margin-bottom: 64px;
+    margin-bottom: 72px;
     position: relative;
     z-index: 1;
 }
 
+/* Label com linha decorativa dos dois lados */
 .tipos-label {
-    display: inline-block;
-    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 3.5px;
     text-transform: uppercase;
     color: var(--cor-destaque);
-    margin-bottom: 12px;
+    margin-bottom: 18px;
+}
+
+.tipos-label::before,
+.tipos-label::after {
+    content: '';
+    width: 28px;
+    height: 1.5px;
+    background: var(--cor-destaque);
+    opacity: 0.5;
+    border-radius: 2px;
 }
 
 .tipos-titulo {
-    font-size: 2.9rem;
+    font-size: 3rem;
     font-weight: 800;
-    line-height: 1.15;
+    line-height: 1.12;
     color: var(--cor-cinza-destaque);
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
 }
 
 .tipos-titulo-destaque {
     color: var(--cor-destaque);
+    position: relative;
+    display: inline-block;
+}
+
+/* Sublinhado animado no destaque */
+.tipos-titulo-destaque::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cor-destaque), var(--cor-azul-destaque));
+    border-radius: 2px;
 }
 
 .tipos-subtitulo {
     font-size: 1.05rem;
     color: #A3A8B0;
-    max-width: 520px;
+    max-width: 480px;
     margin: 0 auto;
-    line-height: 1.65;
+    line-height: 1.7;
 }
 
 /* ── Grid ── */
@@ -1998,6 +2026,36 @@
     margin: 0 auto;
     position: relative;
     z-index: 1;
+}
+
+.tipo-card-titulo .ti {
+    color: var(--cor-destaque);
+    font-size: 1.8rem;
+    vertical-align: middle;
+    margin-right: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 98, 0, 0.12);
+    border: 1.5px solid rgba(255, 98, 0, 0.20);
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                background 0.35s ease,
+                box-shadow 0.35s ease;
+}
+
+.tipo-card-wrap:hover .tipo-card-titulo .ti {
+    transform: scale(1.09);
+    background: rgba(255, 98, 0, 0.15);
+    box-shadow: 2px 2px 4px rgba(255, 98, 0, 0.08);
+}
+
+.tipo-card-wrap:hover .tipo-card-count {
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
 }
 
 /* ===================== CARD WRAPPER ===================== */
@@ -2048,6 +2106,7 @@
 }
 
 .tipo-card-wrap:hover .tipo-chip {
+    transform: translateY(-1px);
     background: rgba(255, 98, 0, 0.06);
     border-color: rgba(255, 98, 0, 0.28);
     color: #C84E00;
@@ -2093,6 +2152,8 @@
 
 /* Título e descrição */
 .tipo-card-titulo {
+    display: flex;
+    align-items: center;
     font-size: 1.35rem;
     font-weight: 800;
     color: #0F172A;
@@ -2102,9 +2163,9 @@
 }
 
 .tipo-card-descricao {
-    font-size: 0.845rem;
-    color: #8691A0;
-    line-height: 1.65;
+    font-size: 0.78rem;
+    color: #B0B8C4;
+    line-height: 1.55;
 }
 
 /* Chips */
@@ -2136,7 +2197,10 @@
     padding: 4px 11px;
     border-radius: 6px;
     border: 1.5px solid #E5E7EB;
-    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    transition: background 0.3s ease,
+                border-color 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     letter-spacing: 0.1px;
 }
 
@@ -2149,6 +2213,12 @@
     gap: 10px;
     margin: 0 -28px -22px -28px;
     background: #232C3C;
+    transition: background 0.4s ease, filter 0.4s ease;
+}
+
+.tipo-card-wrap:hover .tipo-card-rodape {
+    background: #2a3548;
+    filter: brightness(1.08);
 }
 
 .tipo-card-localizacao {
@@ -2186,6 +2256,7 @@
     padding: 5px 12px;
     border-radius: 999px;
     border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .tipo-card-count svg {
