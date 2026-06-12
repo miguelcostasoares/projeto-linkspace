@@ -409,6 +409,11 @@
     /* aplica uma língua a TODOS os registos */
     function applyLang(lang) {
         pruneStale();
+
+        /* desliga o observer enquanto reescrevemos os nós, para não
+           reagir às próprias alterações (evita loop/travamento) */
+        observer.disconnect();
+
         for (var i = 0; i < textRegistry.length; i++) {
             var t = textRegistry[i];
             t.node.nodeValue = t.prefix + translate(t.key, lang) + t.suffix;
@@ -418,6 +423,12 @@
             a.el.setAttribute(a.attr, translate(a.key, lang));
         }
         document.documentElement.lang = HTMLLANG[lang] || lang;
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true,
+            characterData: true
+        });
     }
 
     /* ────────────────────────────────────────────────────────
