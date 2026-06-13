@@ -484,8 +484,14 @@
         textRegistry.push({ node: node, prefix: prefix, suffix: suffix, key: key });
         seenNodes.add(node);
 
-        /* aplica já a língua corrente */
-        node.nodeValue = prefix + translate(key, currentLang) + suffix;
+        /* aplica já a língua corrente (só escreve se for diferente,
+           e marca o nó para o observer ignorar esta própria mutação) */
+        var next = prefix + translate(key, currentLang) + suffix;
+        if (next !== raw) {
+            node.__lsTranslating = true;
+            node.nodeValue = next;
+            node.__lsTranslating = false;
+        }
     }
 
     function localizeAttrs(el) {
@@ -574,9 +580,11 @@
                 }
             } else if (m.type === 'characterData') {
                 var tgt = m.target;
+                /* ignora mutações causadas pelo próprio motor de tradução */
+                if (tgt.__lsTranslating) continue;
                 /* ignora a animação do placeholder rotativo */
                 if (tgt.parentNode && tgt.parentNode.id === 'locationPlaceholder') continue;
-                /* o texto mudou: descarta registo antigo e reavalia */
+                /* o texto mudou (por outro script): descarta registo antigo e reavalia */
                 for (var k = textRegistry.length - 1; k >= 0; k--) {
                     if (textRegistry[k].node === tgt) textRegistry.splice(k, 1);
                 }

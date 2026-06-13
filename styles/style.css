@@ -207,6 +207,17 @@
     transform: translateX(-50%) translateY(0);
     pointer-events: auto;
 }
+
+/* --- Excepção: menu de conta (alinha à direita, não ao centro) --- */
+.dropdown-menu--account {
+    left: auto;
+    right: 0;
+    transform: translateY(6px);
+}
+
+.dropdown:hover .dropdown-menu--account {
+    transform: translateY(0);
+}
  
 /* --- Itens do dropdown --- */
 .dropdown-menu a {
@@ -266,7 +277,7 @@
 }
 
 .herosection .herosection_image {
-    background-image: url("images/image_herosection.jpg");
+    background-image: url("../images/image_herosection.jpg");
     position: relative;
     overflow: hidden;
     height: 100vh;

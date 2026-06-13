@@ -3,15 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkSpace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>LinkSpace — Encontre o imóvel ideal para si</title>
+
+    <!-- SEO básico -->
+    <meta name="description" content="LinkSpace: facilitamos a procura pelo imóvel ideal. Apartamentos, moradias, terrenos e prédios com acompanhamento de consultores especializados em Portugal.">
+    <meta name="theme-color" content="#161d28">
+    <link rel="canonical" href="https://www.linkspace.pt/">
+
+    <!-- Open Graph / partilha social -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LinkSpace — Encontre o imóvel ideal para si">
+    <meta property="og:description" content="Apartamentos, moradias, terrenos e prédios com acompanhamento de consultores especializados.">
+    <meta property="og:image" content="/images/clogo_linkspace.png">
+    <meta property="og:locale" content="pt_PT">
+
     <link rel="shortcut icon" href="/favicon/favicon.png" type="image/x-icon">
+
+    <!-- Preconnect a origens de terceiros (acelera fontes e ícones) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
     <!-- CSS global -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/style.css">
     <!-- CSS de idioma -->
-    <link rel="stylesheet" href="lang.css">
-    <link rel="stylesheet" href="account.css">
+    <link rel="stylesheet" href="styles/lang.css">
+    <!-- CSS de account -->
+    <link rel="stylesheet" href="styles/account.css">
+    <!-- CSS responsivo (mobile-first) — carregado por último para vencer a cascata -->
+    <link rel="stylesheet" href="styles/responsive.css">
+
 </head>
 
 <body>
@@ -266,7 +290,7 @@
             <div class="imoveis-grid">
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/image1.jpeg" alt="OLEA VILLAGE 76" class="card-image">
+                        <img src="/images/image1.jpeg" alt="OLEA VILLAGE 76" class="card-image" loading="lazy" decoding="async">
                         <a href="#" class="card-explore-btn">Explorar</a>
                         <div class="card-badges">
                             <span class="badge badge-tipo">Apartamento</span>
@@ -292,7 +316,7 @@
                         <div class="card-divider"></div>
                         <div class="card-footer">
                             <div class="card-agent">
-                                <img src="/images/consultor2.jpeg" alt="Hugo Ferreira" class="agent-avatar">
+                                <img src="/images/consultor2.jpeg" alt="Hugo Ferreira" class="agent-avatar" loading="lazy" decoding="async">
                                 <div>
                                     <span class="agent-name">Hugo Ferreira</span>
                                     <span class="agent-role">Consultor</span>
@@ -304,7 +328,7 @@
                 </article>
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/image2.jpeg" alt="Cobertura T4" class="card-image">
+                        <img src="/images/image2.jpeg" alt="Cobertura T4" class="card-image" loading="lazy" decoding="async">
                         <a href="#" class="card-explore-btn">Explorar</a>
                         <div class="card-badges">
                             <span class="badge badge-tipo">Cobertura</span>
@@ -331,7 +355,7 @@
                         <div class="card-divider"></div>
                         <div class="card-footer">
                             <div class="card-agent"> <img src="/images/consultor1.jpeg" alt="Raphael de Almeida"
-                                    class="agent-avatar">
+                                    class="agent-avatar" loading="lazy" decoding="async">
                                 <div> <span class="agent-name">Raphael de Almeida</span> <span
                                         class="agent-role">Consultor Sênior</span> </div>
                             </div>
@@ -341,7 +365,7 @@
                 </article>
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/image3.jpeg" alt="Moradia T2" class="card-image">
+                        <img src="/images/image3.jpeg" alt="Moradia T2" class="card-image" loading="lazy" decoding="async">
                         <a href="#" class="card-explore-btn">Explorar</a>
                         <div class="card-badges">
                             <span class="badge badge-tipo">Moradia</span>
@@ -369,7 +393,7 @@
                         <div class="card-divider"></div>
                         <div class="card-footer">
                             <div class="card-agent">
-                                <img src="/images/consultor3.jpeg" alt="Bruno Sobral" class="agent-avatar">
+                                <img src="/images/consultor3.jpeg" alt="Bruno Sobral" class="agent-avatar" loading="lazy" decoding="async">
                                 <div>
                                     <span class="agent-name">Bruno Sobral</span>
                                     <span class="agent-role">Consultor</span>
@@ -383,7 +407,7 @@
                 </article>
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/image4.jpeg" alt="Apartamento T2 em Armação da Pêra" class="card-image">
+                        <img src="/images/image4.jpeg" alt="Apartamento T2 em Armação da Pêra" class="card-image" loading="lazy" decoding="async">
                         <a href="#" class="card-explore-btn">Explorar</a>
                         <div class="card-badges">
                             <span class="badge badge-tipo">Apartamento</span>
@@ -411,7 +435,7 @@
                         <div class="card-divider"></div>
                         <div class="card-footer">
                             <div class="card-agent">
-                                <img src="/images/consultor2.jpeg" alt="Hugo Ferreira" class="agent-avatar">
+                                <img src="/images/consultor2.jpeg" alt="Hugo Ferreira" class="agent-avatar" loading="lazy" decoding="async">
                                 <div>
                                     <span class="agent-name">Hugo Ferreira</span>
                                     <span class="agent-role">Consultor</span>
@@ -425,7 +449,7 @@
                 </article>
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/image5.jpeg" alt="Cobertura T4 nova em Braga" class="card-image">
+                        <img src="/images/image5.jpeg" alt="Cobertura T4 nova em Braga" class="card-image" loading="lazy" decoding="async">
                         <a href="#" class="card-explore-btn">Explorar</a>
                         <div class="card-badges">
                             <span class="badge badge-tipo">Cobertura</span>
@@ -453,7 +477,7 @@
                         <div class="card-divider"></div>
                         <div class="card-footer">
                             <div class="card-agent">
-                                <img src="/images/consultor1.jpeg" alt="Raphael de Almeida" class="agent-avatar">
+                                <img src="/images/consultor1.jpeg" alt="Raphael de Almeida" class="agent-avatar" loading="lazy" decoding="async">
                                 <div>
                                     <span class="agent-name">Raphael de Almeida</span>
                                     <span class="agent-role">Consultor</span>
@@ -467,7 +491,7 @@
                 </article>
                 <article class="imovel-card">
                     <div class="card-image-wrapper">
-                        <img src="/images/image6.jpeg" alt="Moradia T4 com piscina em Sabariz" class="card-image">
+                        <img src="/images/image6.jpeg" alt="Moradia T4 com piscina em Sabariz" class="card-image" loading="lazy" decoding="async">
                         <a href="#" class="card-explore-btn">Explorar</a>
                         <div class="card-badges">
                             <span class="badge badge-tipo">Moradia</span>
@@ -492,7 +516,7 @@
                         <div class="card-divider"></div>
                         <div class="card-footer">
                             <div class="card-agent"> <img src="/images/consultor4.jpeg" alt="Hugo Azevedo"
-                                    class="agent-avatar">
+                                    class="agent-avatar" loading="lazy" decoding="async">
                                 <div>
                                     <span class="agent-name">Hugo Azevedo</span>
                                     <span class="agent-role">Consultor</span>
@@ -1304,10 +1328,12 @@
     <script src="js/about-us.js"></script>
     <script src="js/cidades.js"></script>
     <script src="js/chatbot.js"></script>
-    <script src="js/lang.js"></script>
     <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
     <script src="js/account.js"></script>
-    
+    <!-- Navegação mobile (hamburger drawer) -->
+    <script src="js/mobile-nav.js"></script>
+
 </body>
 
 </html>

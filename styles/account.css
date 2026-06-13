@@ -6,13 +6,23 @@
    ============================================================ */
 
 /* ───────────────────────── WIDGET NA NAVBAR ───────────────────────── */
-.dropdown--account { position: relative; }
+.dropdown--account {
+    position: relative;
+}
 
 .dropdown--account .account-trigger {
     background: transparent;
     cursor: pointer;
     gap: 7px;
 }
+
+.dropdown--account:hover .dropdown-menu--account,
+.dropdown--account.open .dropdown-menu--account {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
 .dropdown--account .account-trigger i { font-size: 19px; line-height: 1; }
 .dropdown--account .account-trigger:focus-visible {
     outline: 2px solid var(--cor-destaque);
@@ -34,17 +44,73 @@
     box-shadow: 0 0 0 2px rgba(255, 104, 3, 0.22);
 }
 
-.dropdown-menu--account { min-width: 248px; right: 0; left: auto; transform: translateY(6px); }
-.dropdown--account:hover .dropdown-menu--account,
+/* Menu — ancorado à DIREITA do botão, sem translateX */
+.dropdown-menu--account {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    min-width: 200px;
+    max-width: 260px;
+    width: max-content;
+    margin-top: 14px;
+    background: #fff;
+    border-radius: 12px;                    /* ← Todos os cantos arredondados */
+    box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* abertura por clique (mobile) */
 .dropdown--account.open .dropdown-menu--account {
     transform: translateY(0);
-    opacity: 1; visibility: visible; pointer-events: auto;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
-/* o menu de conta alinha à direita (fica no canto), não ao centro */
-.dropdown-menu--account { left: auto; right: 0; }
-.dropdown-menu--account.dropdown-menu { transform: translateY(6px); }
-.dropdown--account:hover .dropdown-menu--account.dropdown-menu,
-.dropdown--account.open .dropdown-menu--account.dropdown-menu { transform: translateY(0); }
+
+/* Seletor de idioma — tela de login */
+.auth-lang {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    z-index: 50;
+}
+
+.auth-lang .lang-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 12px 6px 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+
+.auth-lang .lang-trigger:hover {
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    transform: translateY(-1px);
+}
+
+/* Chevron próprio (cor garantida sobre fundo claro) */
+.auth-lang .arrow {
+    color: #8a93a3;
+    opacity: 0.9;
+}
+
+.auth-lang.open .arrow,
+.auth-lang:hover .arrow {
+    color: var(--cor-destaque);
+}
 
 .account-head {
     display: flex; flex-direction: column; gap: 2px;
@@ -71,7 +137,7 @@
     transition: background 0.2s ease, color 0.2s ease;
     text-align: left;
 }
-.dropdown-menu--account a::before { display: none; } /* anula a linha herdada do style.css */
+.dropdown-menu--account a::before { display: none; }
 .dropdown-menu--account a i,
 .dropdown-menu--account .account-logout i {
     font-size: 17px; color: #9aa0ab; flex-shrink: 0;
@@ -105,10 +171,7 @@
     z-index: 4000; max-width: calc(100vw - 32px);
 }
 .ls-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: auto; }
-.ls-toast a {
-    color: var(--cor-destaque); font-weight: 700; text-decoration: none;
-    white-space: nowrap;
-}
+.ls-toast a { color: var(--cor-destaque); font-weight: 700; text-decoration: none; white-space: nowrap; }
 .ls-toast a:hover { text-decoration: underline; }
 
 /* ───────────────────────── NEWSLETTER (rodapé) ───────────────────────── */
@@ -161,7 +224,6 @@
     min-height: 100vh;
 }
 
-/* Painel de marca (esquerda) */
 .auth-brand {
     position: relative;
     display: flex; flex-direction: column; justify-content: space-between;
@@ -172,18 +234,20 @@
 }
 .auth-brand__bg {
     position: absolute; inset: 0;
-    background-image: url("images/image_herosection.jpg");
+    background-image: url("../images/image_herosection.jpg");
     background-size: cover; background-position: center;
     transform: scale(1.05);
     opacity: 0.55;
 }
+
 .auth-brand__bg::after {
     content: ''; position: absolute; inset: 0;
     background:
         radial-gradient(120% 90% at 15% 10%, rgba(255, 104, 3, 0.42), transparent 55%),
         linear-gradient(180deg, rgba(10,12,17,0.55) 0%, rgba(10,12,17,0.82) 100%);
 }
-.auth-brand > * { position: relative; z-index: 1; }
+.auth-brand > *:not(.auth-brand__bg) { position: relative; z-index: 1; }
+.auth-brand__logo { display: inline-block; width: fit-content; }
 .auth-brand__logo img { height: 34px; width: auto; display: block; }
 .auth-brand__copy { max-width: 420px; }
 .auth-brand__eyebrow {
@@ -199,10 +263,17 @@
 .auth-brand__title span { color: var(--cor-destaque); }
 .auth-brand__text { font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.74); }
 .auth-brand__foot { font-size: 12px; color: rgba(255,255,255,0.5); }
-.auth-brand__back { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 13px; display: inline-flex; align-items: center; gap: 6px; }
+.auth-brand__back { 
+    color: rgba(255,255,255,0.8); 
+    text-decoration: none; 
+    font-size: 13px; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 6px;
+    align-self: flex-start;
+}
 .auth-brand__back:hover { color: #fff; }
 
-/* Painel do formulário (direita) */
 .auth-panel {
     display: flex; align-items: center; justify-content: center;
     padding: 40px 24px;
@@ -351,9 +422,7 @@
 .profile-form .field-static label { font-size: 12px; color: #8a8f99; font-weight: 600; }
 .profile-form .field-static span { font-size: 14.5px; color: #1d2330; font-weight: 600; }
 
-.card-block {
-    border: 1px solid #ececf0; border-radius: 14px; padding: 20px; margin-bottom: 18px;
-}
+.card-block { border: 1px solid #ececf0; border-radius: 14px; padding: 20px; margin-bottom: 18px; }
 .card-block-title { font-size: 14px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .card-block-title i { color: var(--cor-destaque); }
 
@@ -370,7 +439,6 @@
 .collapse { display: none; margin-top: 16px; }
 .collapse.open { display: block; }
 
-/* Grelhas de imóveis guardados / vistos */
 .props-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
 .prop-mini {
     border: 1px solid #ececf0; border-radius: 14px; overflow: hidden; background: #fff;
@@ -403,18 +471,44 @@
 .pane-tools { display: flex; justify-content: flex-end; margin-bottom: 16px; }
 
 /* ───────────────────────── RESPONSIVO ───────────────────────── */
+/* Proteção extra para não ultrapassar a tela */
+@media (max-width: 1100px) {
+    .dropdown-menu--account {
+        right: 8px;           /* afasta um pouco da borda */
+    }
+}
+
+@media (max-width: 992px) {
+    .dropdown-menu--account {
+        right: 12px;             /* dá margem da borda da tela */
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dropdown-menu--account {
+        right: 12px;
+        min-width: 180px;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 640px) {
+    .dropdown-menu--account {
+        right: 8px;
+        min-width: 170px;
+        max-width: 240px;
+    }
+}
+
 @media (max-width: 860px) {
     .auth-shell { grid-template-columns: 1fr; }
-    .auth-brand { min-height: 230px; padding: 26px 26px 30px; }
+    .auth-brand { min-height: 230px; padding: 26px 26px 30px; flex-direction: row; align-items: center; justify-content: space-between; }
     .auth-brand__copy { display: none; }
-    .auth-brand { flex-direction: row; align-items: center; justify-content: space-between; }
     .profile-grid { grid-template-columns: 1fr; }
     .profile-nav { position: static; display: flex; gap: 4px; overflow-x: auto; }
     .profile-nav button { white-space: nowrap; }
     .profile-nav .nav-sep { display: none; }
-    .dropdown-menu--account { right: auto; left: 50%; transform: translateX(-50%) translateY(6px); }
-    .dropdown--account:hover .dropdown-menu--account,
-    .dropdown--account.open .dropdown-menu--account { transform: translateX(-50%) translateY(0); }
 }
 @media (max-width: 520px) {
     .profile-panel { padding: 22px 18px; }
@@ -422,7 +516,6 @@
     .props-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }
 
-/* Acessibilidade: respeitar redução de movimento */
 @media (prefers-reduced-motion: reduce) {
     .panel-pane.is-active { animation: none; }
     .auth-brand__bg { transform: none; }

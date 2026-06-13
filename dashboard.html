@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkSpace</title>
+    <link rel="shortcut icon" href="/favicon/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+
+    <!-- CSS global (variáveis de cor e tipografia já existentes no projeto) -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- CSS específico do dashboard -->
+    <link rel="stylesheet" href="/styles/dashboard.css">
+</head>
+
+<body>
+ 
+    <div class="app">
+ 
+        <!-- ======================= SIDEBAR ======================= -->
+        <aside class="sidebar" id="sidebar">
+ 
+            <div class="sidebar__brand">
+                <img class="sidebar__brand-icon" src="/images/ologo_linkspace.png" alt="logo linkspace">
+                <span class="sidebar__brand-name">link<strong>space</strong></span>
+            </div>
+ 
+            <nav class="sidebar__nav" aria-label="Navegação principal">
+                <ul class="sidebar__list">
+ 
+                    <li class="sidebar__item is-active">
+                        <a href="#" class="sidebar__link">
+                            <i class="ti ti-layout-dashboard"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+ 
+                    <li class="sidebar__item has-submenu">
+                        <button class="sidebar__link sidebar__toggle" aria-expanded="false">
+                            <i class="ti ti-building-estate"></i>
+                            <span>Imóveis</span>
+                            <i class="ti ti-chevron-down sidebar__chevron"></i>
+                        </button>
+                        <ul class="sidebar__submenu">
+                            <li><a href="#">Listagem <span class="badge badge--soon">Em breve</span></a></li>
+                            <li><a href="#">Adicionar imóvel <span class="badge badge--soon">Em breve</span></a></li>
+                            <li><a href="#">Portais (Idealista, Imovirtual...) <span class="badge badge--soon">Em breve</span></a></li>
+                        </ul>
+                    </li>
+ 
+                    <li class="sidebar__item has-submenu">
+                        <button class="sidebar__link sidebar__toggle" aria-expanded="false">
+                            <i class="ti ti-users"></i>
+                            <span>Clientes &amp; Leads</span>
+                            <i class="ti ti-chevron-down sidebar__chevron"></i>
+                        </button>
+                        <ul class="sidebar__submenu">
+                            <li><a href="#">Leads <span class="badge badge--soon">Em breve</span></a></li>
+                            <li><a href="#">Pipeline de negócios <span class="badge badge--soon">Em breve</span></a></li>
+                        </ul>
+                    </li>
+ 
+                    <li class="sidebar__item has-submenu">
+                        <button class="sidebar__link sidebar__toggle" aria-expanded="false">
+                            <i class="ti ti-users-group"></i>
+                            <span>Equipa</span>
+                            <i class="ti ti-chevron-down sidebar__chevron"></i>
+                        </button>
+                        <ul class="sidebar__submenu">
+                            <li><a href="#">Consultores <span class="badge badge--soon">Em breve</span></a></li>
+                            <li><a href="#">Agendas &amp; visitas <span class="badge badge--soon">Em breve</span></a></li>
+                        </ul>
+                    </li>
+ 
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link">
+                            <i class="ti ti-chart-bar"></i>
+                            <span>Relatórios</span>
+                            <span class="badge badge--soon">Em breve</span>
+                        </a>
+                    </li>
+ 
+                    <li class="sidebar__item">
+                        <a href="#" class="sidebar__link">
+                            <i class="ti ti-settings"></i>
+                            <span>Configurações</span>
+                            <span class="badge badge--soon">Em breve</span>
+                        </a>
+                    </li>
+ 
+                </ul>
+            </nav>
+ 
+            <div class="sidebar__footer">
+                <div class="sidebar__user">
+                    <div class="avatar avatar--md">AR</div>
+                    <div class="sidebar__user-info">
+                        <strong>Ana Ribeiro</strong>
+                        <span>Gestora Comercial</span>
+                    </div>
+                    <button class="sidebar__logout" aria-label="Terminar sessão">
+                        <i class="ti ti-logout"></i>
+                    </button>
+                </div>
+            </div>
+ 
+        </aside>
+ 
+        <!-- ======================= CONTEÚDO PRINCIPAL ======================= -->
+        <div class="main">
+ 
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <button class="topbar__menu-toggle" id="sidebarToggle" aria-label="Abrir menu">
+                    <i class="ti ti-menu-2"></i>
+                </button>
+ 
+                <div class="topbar__title">
+                    <h1>Dashboard</h1>
+                    <p>Olá, Ana — aqui está o resumo da imobiliária hoje, 13 de junho.</p>
+                </div>
+ 
+                <div class="topbar__actions">
+ 
+                    <div class="topbar__search">
+                        <i class="ti ti-search"></i>
+                        <input type="text" placeholder="Pesquisar imóveis, leads, clientes...">
+                    </div>
+ 
+                    <button class="topbar__icon-btn" aria-label="Notificações">
+                        <i class="ti ti-bell"></i>
+                        <span class="badge-dot"></span>
+                    </button>
+ 
+                    <div class="topbar__period">
+                        <i class="ti ti-calendar"></i>
+                        <select aria-label="Período">
+                            <option>Hoje</option>
+                            <option selected>Esta semana</option>
+                            <option>Este mês</option>
+                        </select>
+                    </div>
+ 
+                    <button class="btn btn--primary">
+                        <i class="ti ti-plus"></i>
+                        <span>Novo Imóvel</span>
+                    </button>
+ 
+                </div>
+            </header>
+ 
+            <!-- CONTEÚDO DO DASHBOARD -->
+            <main class="content">
+ 
+                <!-- ======================= KPIs ======================= -->
+                <section class="kpi-grid" aria-label="Indicadores principais">
+ 
+                    <article class="kpi-card">
+                        <div class="kpi-card__icon kpi-card__icon--orange">
+                            <i class="ti ti-building-estate"></i>
+                        </div>
+                        <div class="kpi-card__body">
+                            <span class="kpi-card__label">Imóveis Ativos</span>
+                            <strong class="kpi-card__value">134</strong>
+                            <div class="kpi-card__meta">
+                                <span class="trend trend--up"><i class="ti ti-trending-up"></i> +6 este mês</span>
+                            </div>
+                            <p class="kpi-card__breakdown">89 à venda · 31 arrendamento · 14 reservados</p>
+                        </div>
+                    </article>
+ 
+                    <article class="kpi-card">
+                        <div class="kpi-card__icon kpi-card__icon--blue">
+                            <i class="ti ti-user-plus"></i>
+                        </div>
+                        <div class="kpi-card__body">
+                            <span class="kpi-card__label">Leads Novos (hoje)</span>
+                            <strong class="kpi-card__value">18</strong>
+                            <div class="kpi-card__meta">
+                                <span class="trend trend--up"><i class="ti ti-trending-up"></i> +24% vs ontem</span>
+                            </div>
+                            <p class="kpi-card__breakdown">47 leads esta semana</p>
+                        </div>
+                    </article>
+ 
+                    <article class="kpi-card">
+                        <div class="kpi-card__icon kpi-card__icon--navy">
+                            <i class="ti ti-route"></i>
+                        </div>
+                        <div class="kpi-card__body">
+                            <span class="kpi-card__label">Negócios em Pipeline</span>
+                            <strong class="kpi-card__value">23</strong>
+                            <div class="kpi-card__meta">
+                                <span class="trend trend--neutral"><i class="ti ti-arrows-shuffle"></i> em curso</span>
+                            </div>
+                            <p class="kpi-card__breakdown">€ 2.430.000 em valor potencial</p>
+                        </div>
+                    </article>
+ 
+                    <article class="kpi-card">
+                        <div class="kpi-card__icon kpi-card__icon--green">
+                            <i class="ti ti-cash-banknote"></i>
+                        </div>
+                        <div class="kpi-card__body">
+                            <span class="kpi-card__label">Vendas Fechadas (mês)</span>
+                            <strong class="kpi-card__value">€ 1.120.000</strong>
+                            <div class="kpi-card__meta">
+                                <span class="trend trend--up"><i class="ti ti-trending-up"></i> +15% vs mês anterior</span>
+                            </div>
+                            <p class="kpi-card__breakdown">6 negócios fechados</p>
+                        </div>
+                    </article>
+ 
+                    <article class="kpi-card">
+                        <div class="kpi-card__icon kpi-card__icon--orange">
+                            <i class="ti ti-percentage"></i>
+                        </div>
+                        <div class="kpi-card__body">
+                            <span class="kpi-card__label">Taxa de Conversão</span>
+                            <strong class="kpi-card__value">12,4%</strong>
+                            <div class="kpi-card__meta">
+                                <span class="trend trend--up"><i class="ti ti-trending-up"></i> +1,8 p.p. no trimestre</span>
+                            </div>
+                            <p class="kpi-card__breakdown">Lead → visita → venda</p>
+                        </div>
+                    </article>
+ 
+                    <article class="kpi-card">
+                        <div class="kpi-card__icon kpi-card__icon--blue">
+                            <i class="ti ti-report-money"></i>
+                        </div>
+                        <div class="kpi-card__body">
+                            <span class="kpi-card__label">Receita Projetada</span>
+                            <strong class="kpi-card__value">€ 34.200</strong>
+                            <div class="kpi-card__meta">
+                                <span class="trend trend--neutral"><i class="ti ti-coin"></i> em comissões</span>
+                            </div>
+                            <p class="kpi-card__breakdown">Estimativa para este mês</p>
+                        </div>
+                    </article>
+ 
+                </section>
+ 
+                <!-- ======================= GRÁFICOS ======================= -->
+                <section class="charts-grid">
+ 
+                    <div class="card chart-card">
+                        <div class="card__header">
+                            <div>
+                                <h2>Vendas por Mês</h2>
+                                <span class="card__subtitle">Valor total faturado (€)</span>
+                            </div>
+                        </div>
+                        <div class="chart-card__canvas-wrap">
+                            <canvas id="chartVendas"
+                                data-labels='["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"]'
+                                data-values='[680000, 720000, 540000, 890000, 760000, 1120000]'></canvas>
+                        </div>
+                    </div>
+ 
+                    <div class="card chart-card chart-card--small">
+                        <div class="card__header">
+                            <div>
+                                <h2>Leads por Origem</h2>
+                                <span class="card__subtitle">Esta semana</span>
+                            </div>
+                        </div>
+                        <div class="chart-card__canvas-wrap">
+                            <canvas id="chartLeadsFonte"
+                                data-labels='["Idealista", "Site", "Imovirtual", "Facebook", "Indicação"]'
+                                data-values='[38, 27, 18, 12, 5]'></canvas>
+                        </div>
+                        <ul class="chart-legend" id="legendLeadsFonte"></ul>
+                    </div>
+ 
+                </section>
+ 
+                <!-- ======================= PIPELINE DE NEGÓCIOS ======================= -->
+                <section class="card pipeline-card">
+                    <div class="card__header">
+                        <div>
+                            <h2>Pipeline de Negócios</h2>
+                            <span class="card__subtitle">23 negócios em curso · € 2.430.000 em valor potencial</span>
+                        </div>
+                        <a href="#" class="card__link">Ver pipeline completo <i class="ti ti-arrow-right"></i></a>
+                    </div>
+ 
+                    <div class="pipeline">
+ 
+                        <div class="pipeline-column">
+                            <div class="pipeline-column__header">
+                                <h3>Novo Lead</h3>
+                                <span class="pipeline-column__count">12</span>
+                            </div>
+                            <div class="pipeline-column__cards">
+ 
+                                <article class="deal-card">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--apartamento">Apartamento</span>
+                                        <span class="deal-card__value">€ 185.000</span>
+                                    </div>
+                                    <h4>T2 em Maximinos, Braga</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-user"></i> Sara Costa</span>
+                                        <div class="avatar avatar--xs">HF</div>
+                                    </div>
+                                </article>
+ 
+                                <article class="deal-card">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--apartamento">Apartamento</span>
+                                        <span class="deal-card__value">€ 135.000</span>
+                                    </div>
+                                    <h4>T1 em São Vicente, Braga</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-user"></i> Carlos Rocha</span>
+                                        <div class="avatar avatar--xs">HF</div>
+                                    </div>
+                                </article>
+ 
+                                <article class="deal-card">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--terreno">Terreno</span>
+                                        <span class="deal-card__value">€ 120.000</span>
+                                    </div>
+                                    <h4>Terreno urbano em Real, Braga</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-user"></i> Filipe Matos</span>
+                                        <div class="avatar avatar--xs">BS</div>
+                                    </div>
+                                </article>
+ 
+                                <a href="#" class="pipeline-column__more">+ 9 negócios</a>
+                            </div>
+                        </div>
+ 
+                        <div class="pipeline-column">
+                            <div class="pipeline-column__header">
+                                <h3>Visita Agendada</h3>
+                                <span class="pipeline-column__count">8</span>
+                            </div>
+                            <div class="pipeline-column__cards">
+ 
+                                <article class="deal-card">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--moradia">Moradia</span>
+                                        <span class="deal-card__value">€ 295.000</span>
+                                    </div>
+                                    <h4>T3 com jardim, Palmeira</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-calendar-event"></i> Hoje, 15h00</span>
+                                        <div class="avatar avatar--xs">BS</div>
+                                    </div>
+                                </article>
+ 
+                                <article class="deal-card">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--apartamento">Apartamento</span>
+                                        <span class="deal-card__value">€ 185.000</span>
+                                    </div>
+                                    <h4>T2 em Maximinos, Braga</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-calendar-event"></i> Amanhã, 11h30</span>
+                                        <div class="avatar avatar--xs">BS</div>
+                                    </div>
+                                </article>
+ 
+                                <a href="#" class="pipeline-column__more">+ 6 negócios</a>
+                            </div>
+                        </div>
+ 
+                        <div class="pipeline-column">
+                            <div class="pipeline-column__header">
+                                <h3>Proposta</h3>
+                                <span class="pipeline-column__count">5</span>
+                            </div>
+                            <div class="pipeline-column__cards">
+ 
+                                <article class="deal-card">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--cobertura">Cobertura</span>
+                                        <span class="deal-card__value">€ 820.000</span>
+                                    </div>
+                                    <h4>T4 nova, Sé · Braga</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-user"></i> Inês Gonçalves</span>
+                                        <div class="avatar avatar--xs">RA</div>
+                                    </div>
+                                </article>
+ 
+                                <article class="deal-card">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--moradia">Moradia</span>
+                                        <span class="deal-card__value">€ 395.000</span>
+                                    </div>
+                                    <h4>T4 em Sabariz, Vila Verde</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-user"></i> Paulo Mendes</span>
+                                        <div class="avatar avatar--xs">RA</div>
+                                    </div>
+                                </article>
+ 
+                                <a href="#" class="pipeline-column__more">+ 3 negócios</a>
+                            </div>
+                        </div>
+ 
+                        <div class="pipeline-column">
+                            <div class="pipeline-column__header">
+                                <h3>Fecho / Ganho</h3>
+                                <span class="pipeline-column__count">3</span>
+                            </div>
+                            <div class="pipeline-column__cards">
+ 
+                                <article class="deal-card deal-card--won">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--moradia">Moradia</span>
+                                        <span class="deal-card__value">€ 158.000</span>
+                                    </div>
+                                    <h4>T2, Montalegre · Salto</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-circle-check"></i> Fechado hoje</span>
+                                        <div class="avatar avatar--xs">BS</div>
+                                    </div>
+                                </article>
+ 
+                                <article class="deal-card deal-card--won">
+                                    <div class="deal-card__top">
+                                        <span class="tag tag--apartamento">Apartamento</span>
+                                        <span class="deal-card__value">€ 260.000</span>
+                                    </div>
+                                    <h4>T3 em Maximinos, Braga</h4>
+                                    <div class="deal-card__footer">
+                                        <span><i class="ti ti-user"></i> Joana Reis</span>
+                                        <div class="avatar avatar--xs">HF</div>
+                                    </div>
+                                </article>
+ 
+                                <a href="#" class="pipeline-column__more">+ 1 negócio</a>
+                            </div>
+                        </div>
+ 
+                    </div>
+                </section>
+ 
+                <!-- ======================= LEADS QUENTES / ALERTAS / PRÓXIMAS VISITAS ======================= -->
+                <section class="triple-grid">
+ 
+                    <div class="card list-card">
+                        <div class="card__header">
+                            <div>
+                                <h2><i class="ti ti-flame list-card__title-icon list-card__title-icon--hot"></i> Leads Quentes</h2>
+                                <span class="card__subtitle">Precisam de follow-up urgente</span>
+                            </div>
+                            <span class="count-badge count-badge--hot">4</span>
+                        </div>
+                        <ul class="list-card__list">
+                            <li class="lead-item">
+                                <div class="lead-item__info">
+                                    <strong>Sara Costa</strong>
+                                    <span>T2 em Maximinos · via Idealista</span>
+                                    <span class="lead-item__since">Sem contacto há 6 dias</span>
+                                </div>
+                                <span class="urgency-badge urgency-badge--high">Alta</span>
+                            </li>
+                            <li class="lead-item">
+                                <div class="lead-item__info">
+                                    <strong>Joana Pires</strong>
+                                    <span>Cobertura T4, Sé · via Imovirtual</span>
+                                    <span class="lead-item__since">Sem contacto há 5 dias</span>
+                                </div>
+                                <span class="urgency-badge urgency-badge--high">Alta</span>
+                            </li>
+                            <li class="lead-item">
+                                <div class="lead-item__info">
+                                    <strong>Filipe Matos</strong>
+                                    <span>Terreno em Real · via Site</span>
+                                    <span class="lead-item__since">Sem contacto há 4 dias</span>
+                                </div>
+                                <span class="urgency-badge urgency-badge--medium">Média</span>
+                            </li>
+                            <li class="lead-item">
+                                <div class="lead-item__info">
+                                    <strong>Tiago Nogueira</strong>
+                                    <span>T1, São Vicente · via Facebook</span>
+                                    <span class="lead-item__since">Sem contacto há 3 dias</span>
+                                </div>
+                                <span class="urgency-badge urgency-badge--medium">Média</span>
+                            </li>
+                        </ul>
+                    </div>
+ 
+                    <div class="card list-card">
+                        <div class="card__header">
+                            <div>
+                                <h2><i class="ti ti-alert-triangle list-card__title-icon list-card__title-icon--alert"></i> Alertas</h2>
+                                <span class="card__subtitle">Pontos de atenção</span>
+                            </div>
+                            <span class="count-badge count-badge--alert">3</span>
+                        </div>
+                        <ul class="list-card__list">
+                            <li class="alert-item">
+                                <i class="ti ti-clock-pause alert-item__icon"></i>
+                                <div class="alert-item__info">
+                                    <strong>5 imóveis sem atualização</strong>
+                                    <span>Há mais de 30 dias sem alteração de preço ou estado</span>
+                                </div>
+                                <a href="#" class="alert-item__link">Ver imóveis</a>
+                            </li>
+                            <li class="alert-item">
+                                <i class="ti ti-user-exclamation alert-item__icon"></i>
+                                <div class="alert-item__info">
+                                    <strong>3 leads sem contacto</strong>
+                                    <span>Há mais de 5 dias sem resposta da equipa</span>
+                                </div>
+                                <a href="#" class="alert-item__link">Ver leads</a>
+                            </li>
+                            <li class="alert-item">
+                                <i class="ti ti-calendar-exclamation alert-item__icon"></i>
+                                <div class="alert-item__info">
+                                    <strong>2 visitas de amanhã</strong>
+                                    <span>Ainda sem confirmação do cliente</span>
+                                </div>
+                                <a href="#" class="alert-item__link">Ver agenda</a>
+                            </li>
+                        </ul>
+                    </div>
+ 
+                    <div class="card list-card">
+                        <div class="card__header">
+                            <div>
+                                <h2><i class="ti ti-calendar-event list-card__title-icon list-card__title-icon--visit"></i> Próximas Visitas</h2>
+                                <span class="card__subtitle">Hoje e amanhã</span>
+                            </div>
+                            <span class="count-badge">4</span>
+                        </div>
+                        <ul class="list-card__list">
+                            <li class="visit-item">
+                                <div class="visit-item__time">
+                                    <strong>15:00</strong>
+                                    <span>Hoje</span>
+                                </div>
+                                <div class="visit-item__info">
+                                    <strong>Miguel Tavares</strong>
+                                    <span>Moradia T3, Palmeira</span>
+                                </div>
+                                <div class="avatar avatar--sm" title="Bruno Sobral">BS</div>
+                            </li>
+                            <li class="visit-item">
+                                <div class="visit-item__time">
+                                    <strong>17:30</strong>
+                                    <span>Hoje</span>
+                                </div>
+                                <div class="visit-item__info">
+                                    <strong>Inês Gonçalves</strong>
+                                    <span>Cobertura T4, Sé</span>
+                                </div>
+                                <div class="avatar avatar--sm" title="Raphael de Almeida">RA</div>
+                            </li>
+                            <li class="visit-item">
+                                <div class="visit-item__time">
+                                    <strong>10:00</strong>
+                                    <span>Amanhã</span>
+                                </div>
+                                <div class="visit-item__info">
+                                    <strong>Carlos Rocha</strong>
+                                    <span>Apartamento T1, S. Vicente</span>
+                                </div>
+                                <div class="avatar avatar--sm" title="Hugo Ferreira">HF</div>
+                            </li>
+                            <li class="visit-item">
+                                <div class="visit-item__time">
+                                    <strong>11:30</strong>
+                                    <span>Amanhã</span>
+                                </div>
+                                <div class="visit-item__info">
+                                    <strong>Sara Costa</strong>
+                                    <span>Apartamento T2, Maximinos</span>
+                                </div>
+                                <div class="avatar avatar--sm" title="Bruno Sobral">BS</div>
+                            </li>
+                        </ul>
+                    </div>
+ 
+                </section>
+ 
+                <!-- ======================= ATIVIDADE RECENTE + IMÓVEIS RECENTES ======================= -->
+                <section class="bottom-grid">
+ 
+                    <div class="card activity-card">
+                        <div class="card__header">
+                            <div>
+                                <h2>Atividade Recente</h2>
+                                <span class="card__subtitle">O que está a acontecer agora</span>
+                            </div>
+                            <span class="live-indicator"><span class="live-indicator__dot"></span> Em tempo real</span>
+                        </div>
+                        <ul class="activity-feed">
+                            <li class="activity-item">
+                                <div class="activity-item__icon activity-item__icon--blue"><i class="ti ti-user-plus"></i></div>
+                                <div class="activity-item__body">
+                                    <p><strong>Novo lead</strong> via Idealista: Sara Costa demonstrou interesse no T2 de Maximinos</p>
+                                    <span class="activity-item__time">há 12 min</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-item__icon activity-item__icon--orange"><i class="ti ti-tag"></i></div>
+                                <div class="activity-item__body">
+                                    <p><strong>Raphael de Almeida</strong> atualizou o preço da Cobertura T4 (Sé) para € 850.000</p>
+                                    <span class="activity-item__time">há 47 min</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-item__icon activity-item__icon--green"><i class="ti ti-calendar-event"></i></div>
+                                <div class="activity-item__body">
+                                    <p><strong>Visita agendada:</strong> Miguel Tavares vai visitar a Moradia T3 em Palmeira hoje às 15h00</p>
+                                    <span class="activity-item__time">há 1h 20min</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-item__icon activity-item__icon--green"><i class="ti ti-circle-check"></i></div>
+                                <div class="activity-item__body">
+                                    <p><strong>Negócio fechado:</strong> Moradia T2 em Montalegre vendida por € 158.000</p>
+                                    <span class="activity-item__time">há 3h</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-item__icon activity-item__icon--navy"><i class="ti ti-phone-call"></i></div>
+                                <div class="activity-item__body">
+                                    <p><strong>Hugo Ferreira</strong> marcou follow-up com Carlos Rocha para amanhã</p>
+                                    <span class="activity-item__time">ontem, 18:42</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-item__icon activity-item__icon--blue"><i class="ti ti-building-estate"></i></div>
+                                <div class="activity-item__body">
+                                    <p><strong>Novo imóvel:</strong> Terreno Urbano em Real, Braga — € 120.000</p>
+                                    <span class="activity-item__time">ontem, 11:15</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+ 
+                    <div class="card properties-card">
+                        <div class="card__header">
+                            <div>
+                                <h2>Imóveis Recentes</h2>
+                                <span class="card__subtitle">Últimas atualizações</span>
+                            </div>
+                            <a href="#" class="card__link">Ver todos <i class="ti ti-arrow-right"></i></a>
+                        </div>
+                        <div class="properties-table-wrap">
+                            <table class="properties-table">
+                                <thead>
+                                    <tr>
+                                        <th>Imóvel</th>
+                                        <th>Tipologia</th>
+                                        <th>Preço</th>
+                                        <th>Estado</th>
+                                        <th>Agente</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="property-cell">
+                                                <div class="property-thumb"><i class="ti ti-photo"></i></div>
+                                                <div>
+                                                    <strong>Cobertura T4 nova</strong>
+                                                    <span><i class="ti ti-map-pin"></i> Sé, Braga</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>T4 · 257 m²</td>
+                                        <td>€ 850.000</td>
+                                        <td><span class="status-badge status-badge--available">Disponível</span></td>
+                                        <td>
+                                            <div class="agent-cell">
+                                                <div class="avatar avatar--xs">RA</div>
+                                                <span>Raphael de Almeida</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="property-cell">
+                                                <div class="property-thumb"><i class="ti ti-photo"></i></div>
+                                                <div>
+                                                    <strong>Moradia T3 com jardim</strong>
+                                                    <span><i class="ti ti-map-pin"></i> Palmeira, Braga</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>T3 · 180 m²</td>
+                                        <td>€ 295.000</td>
+                                        <td><span class="status-badge status-badge--reserved">Reservado</span></td>
+                                        <td>
+                                            <div class="agent-cell">
+                                                <div class="avatar avatar--xs">BS</div>
+                                                <span>Bruno Sobral</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="property-cell">
+                                                <div class="property-thumb"><i class="ti ti-photo"></i></div>
+                                                <div>
+                                                    <strong>Apartamento T2</strong>
+                                                    <span><i class="ti ti-map-pin"></i> Maximinos, Braga</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>T2 · 95 m²</td>
+                                        <td>€ 185.000</td>
+                                        <td><span class="status-badge status-badge--available">Disponível</span></td>
+                                        <td>
+                                            <div class="agent-cell">
+                                                <div class="avatar avatar--xs">HF</div>
+                                                <span>Hugo Ferreira</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="property-cell">
+                                                <div class="property-thumb"><i class="ti ti-photo"></i></div>
+                                                <div>
+                                                    <strong>Moradia T2</strong>
+                                                    <span><i class="ti ti-map-pin"></i> Montalegre, Salto</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>T2 · 85 m²</td>
+                                        <td>€ 158.000</td>
+                                        <td><span class="status-badge status-badge--sold">Vendido</span></td>
+                                        <td>
+                                            <div class="agent-cell">
+                                                <div class="avatar avatar--xs">BS</div>
+                                                <span>Bruno Sobral</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="property-cell">
+                                                <div class="property-thumb"><i class="ti ti-photo"></i></div>
+                                                <div>
+                                                    <strong>Terreno Urbano</strong>
+                                                    <span><i class="ti ti-map-pin"></i> Real, Braga</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>Terreno · 1.200 m²</td>
+                                        <td>€ 120.000</td>
+                                        <td><span class="status-badge status-badge--available">Disponível</span></td>
+                                        <td>
+                                            <div class="agent-cell">
+                                                <div class="avatar avatar--xs">HF</div>
+                                                <span>Hugo Ferreira</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+ 
+                </section>
+ 
+            </main>
+        </div>
+    </div>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

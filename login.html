@@ -7,13 +7,40 @@
     <title>Entrar · LinkSpace</title>
     <link rel="shortcut icon" href="/favicon/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="lang.css">
-    <link rel="stylesheet" href="account.css">
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="styles/style.css">
+    <!-- CSS de idioma -->
+    <link rel="stylesheet" href="styles/lang.css">
+    <!-- CSS de account -->
+    <link rel="stylesheet" href="styles/account.css">
+
 </head>
 
 <body class="account-page">
     <div class="auth-shell">
+
+        <!-- Seletor de idioma -->
+        <div class="dropdown dropdown--lang auth-lang">
+            <button class="links lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">
+                <img src="https://flagcdn.com/pt.svg" alt="Português" class="lang-flag" id="lang-flag-active">
+                <span class="arrow" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu--lang" role="menu">
+                <button class="lang-option" data-lang="pt" role="menuitem">
+                    <img src="https://flagcdn.com/pt.svg" alt="Português" class="lang-flag">
+                    <span>Português</span>
+                </button>
+                <button class="lang-option" data-lang="es" role="menuitem">
+                    <img src="https://flagcdn.com/es.svg" alt="Español" class="lang-flag">
+                    <span>Español</span>
+                </button>
+                <button class="lang-option" data-lang="en" role="menuitem">
+                    <img src="https://flagcdn.com/gb.svg" alt="English" class="lang-flag">
+                    <span>English</span>
+                </button>
+            </div>
+        </div>
 
         <!-- Painel de marca -->
         <aside class="auth-brand">
@@ -29,7 +56,8 @@
                     em primeira mão os novos anúncios.
                 </p>
             </div>
-            <a href="index.html" class="auth-brand__back"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar ao site</a>
+            <a href="index.html" class="auth-brand__back"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar ao
+                site</a>
         </aside>
 
         <!-- Painel do formulário -->
@@ -63,7 +91,8 @@
                         <div class="input-wrap">
                             <i class="ti ti-lock" aria-hidden="true"></i>
                             <input type="password" id="le-pass" autocomplete="current-password" placeholder="••••••••">
-                            <button type="button" class="pass-toggle" data-target="le-pass" aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
+                            <button type="button" class="pass-toggle" data-target="le-pass"
+                                aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
                         </div>
                         <span class="field-msg" data-for="le-pass"></span>
                     </div>
@@ -74,7 +103,8 @@
                     </div>
 
                     <button type="submit" class="btn-primary">Entrar</button>
-                    <p class="auth-switch">Ainda não tem conta? <button type="button" class="link-btn" data-goto="registar">Criar conta</button></p>
+                    <p class="auth-switch">Ainda não tem conta? <button type="button" class="link-btn"
+                            data-goto="registar">Criar conta</button></p>
                 </form>
 
                 <!-- REGISTAR -->
@@ -104,8 +134,10 @@
                         <label for="lr-pass">Palavra-passe</label>
                         <div class="input-wrap">
                             <i class="ti ti-lock" aria-hidden="true"></i>
-                            <input type="password" id="lr-pass" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
-                            <button type="button" class="pass-toggle" data-target="lr-pass" aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
+                            <input type="password" id="lr-pass" autocomplete="new-password"
+                                placeholder="Mínimo 6 caracteres">
+                            <button type="button" class="pass-toggle" data-target="lr-pass"
+                                aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
                         </div>
                         <span class="field-msg" data-for="lr-pass"></span>
                     </div>
@@ -125,13 +157,15 @@
                     </label>
 
                     <button type="submit" class="btn-primary">Criar conta</button>
-                    <p class="auth-switch">Já tem conta? <button type="button" class="link-btn" data-goto="entrar">Entrar</button></p>
+                    <p class="auth-switch">Já tem conta? <button type="button" class="link-btn"
+                            data-goto="entrar">Entrar</button></p>
                 </form>
 
                 <!-- RECUPERAR -->
                 <form id="formRecuperar" novalidate hidden>
                     <h2 class="auth-form-title">Recuperar palavra-passe</h2>
-                    <p class="auth-form-sub">Em produção, isto envia um link de recuperação por e-mail. Nesta demonstração, defina já uma nova palavra-passe.</p>
+                    <p class="auth-form-sub">Em produção, isto envia um link de recuperação por e-mail. Nesta
+                        demonstração, defina já uma nova palavra-passe.</p>
 
                     <div class="field">
                         <label for="lf-email">E-mail</label>
@@ -146,14 +180,17 @@
                         <label for="lf-pass">Nova palavra-passe</label>
                         <div class="input-wrap">
                             <i class="ti ti-lock" aria-hidden="true"></i>
-                            <input type="password" id="lf-pass" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
-                            <button type="button" class="pass-toggle" data-target="lf-pass" aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
+                            <input type="password" id="lf-pass" autocomplete="new-password"
+                                placeholder="Mínimo 6 caracteres">
+                            <button type="button" class="pass-toggle" data-target="lf-pass"
+                                aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
                         </div>
                         <span class="field-msg" data-for="lf-pass"></span>
                     </div>
 
                     <button type="submit" class="btn-primary">Definir nova palavra-passe</button>
-                    <p class="auth-switch"><button type="button" class="link-btn" data-goto="entrar">Voltar ao início de sessão</button></p>
+                    <p class="auth-switch"><button type="button" class="link-btn" data-goto="entrar">Voltar ao início de
+                            sessão</button></p>
                 </form>
 
             </div>
@@ -205,7 +242,7 @@
 
             function fieldError(formEl, field, message) {
                 var input = formEl.querySelector('#' + prefixOf(formEl) + field) ||
-                            formEl.querySelector('[id$="-' + field + '"]');
+                    formEl.querySelector('[id$="-' + field + '"]');
                 var msg = formEl.querySelector('.field-msg[data-for$="' + field + '"]');
                 if (msg) msg.textContent = message;
                 if (input) input.classList.add('has-error');

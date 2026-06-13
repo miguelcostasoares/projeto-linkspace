@@ -26,6 +26,7 @@
 
         var wrap = document.createElement('div');
         wrap.className = 'dropdown dropdown--account';
+        wrap.style.position = 'relative'; /* ← adicione esta linha */
         nav.appendChild(wrap);
 
         renderWidget(wrap);
