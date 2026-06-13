@@ -1,59 +1,74 @@
 @charset "UTF-8";
 
 /* =====================================================================
-   LinkSpace — Camada Responsiva Mobile-First  (v2 — drawer corrigido)
+   LinkSpace — Camada Responsiva Mobile-First
+   ---------------------------------------------------------------------
+   Carregada DEPOIS de style.css / lang.css / account.css.
+   Filosofia: base = mobile; usamos min-width media queries para
+   progressivamente "ligar" o layout de tablet/desktop original.
+   Evitamos !important; vencemos por ordem de cascata + especificidade.
+
+   Breakpoints:
+     base      -> 0–479px   (small mobile)
+     480px     -> phablet
+     768px     -> tablet
+     1024px    -> laptop  (restaura grande parte do layout desktop)
+     1280px    -> desktop grande
    ===================================================================== */
 
 /* ---------------------------------------------------------------------
-   0. Tokens + fundações
+   0. Tokens responsivos + fundações
    ------------------------------------------------------------------- */
 :root {
-    --fs-body:    clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);
-    --fs-h1:      clamp(2rem, 1.4rem + 4.2vw, 3.5rem);
+    /* Tipografia fluida: escala suavemente entre mobile e desktop.
+       clamp(min, fluido, max) — nunca abaixo de 16px no corpo. */
+    --fs-body:    clamp(1rem, 0.95rem + 0.3vw, 1.0625rem);   /* 16 → 17px */
+    --fs-h1:      clamp(2rem, 1.4rem + 4.2vw, 3.5rem);       /* 32 → 56px */
     --fs-h2:      clamp(1.6rem, 1.2rem + 2vw, 2.4rem);
     --fs-h3:      clamp(1.15rem, 1rem + 0.8vw, 1.5rem);
-    --touch-min:  44px;
-    --gutter:     20px;
-    --header-h:   58px;
+
+    /* Alvo mínimo de toque (acessibilidade / WCAG 2.5.5) */
+    --touch-min: 44px;
+
+    /* Gutters laterais por breakpoint */
+    --gutter: 20px;
+
+    /* Altura real do header para offsets de scroll */
+    --header-h: 58px;
 }
 
+/* Box-sizing previsível em todo o site (o reset original não o define) */
 *,
 *::before,
 *::after { box-sizing: border-box; }
 
 html {
+    /* Smooth scrolling global + compensação do header fixo para âncoras */
     scroll-behavior: smooth;
     scroll-padding-top: calc(var(--header-h) + 24px);
-    -webkit-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;   /* impede zoom de fonte iOS em landscape */
     text-size-adjust: 100%;
-    /* FIX BARRA CINZA: html (não body) é o contentor que
-       esconde o drawer fora do ecrã sem causar scrollbar */
-    overflow-x: hidden;
 }
 
 body {
     font-size: var(--fs-body);
-    /* NÃO aplicamos overflow-x: hidden aqui — no Chrome Android
-       isso não corta elementos position:fixed e causa barra lateral */
+    /* impede scroll horizontal acidental causado por elementos decorativos */
+    overflow-x: hidden;
 }
 
-/* Quando o drawer está aberto: trava apenas a posição, sem reflow */
-html.nav-open,
-html.nav-open body {
-    overflow: hidden;
-    /* height: 100% evita o "bounce" iOS */
-    height: 100%;
-}
-
+/* Respeita preferência de movimento reduzido em toda a camada */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *, *::before, *::after {
+    *,
+    *::before,
+    *::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
 }
 
+/* Foco visível por teclado (acessibilidade) — não afeta clique de rato */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -65,14 +80,18 @@ input:focus-visible,
     border-radius: 6px;
 }
 
+/* Imagens nunca transbordam o seu contentor */
 img { max-width: 100%; height: auto; }
 
 
 /* =====================================================================
-   1. HEADER + HAMBURGER DRAWER
+   1. HEADER + NAVEGAÇÃO MOBILE (hamburger drawer)
+   =====================================================================
+   Base (mobile): o <nav> vira um painel deslizante (drawer) controlado
+   pelo botão hamburger. Em ≥1024px restauramos a nav inline original.
    ===================================================================== */
 
-/* --- Botão hamburger ------------------------------------------------ */
+/* Botão hamburger — escondido por defeito; visível só em mobile/tablet */
 .nav-toggle {
     display: inline-flex;
     align-items: center;
@@ -81,27 +100,22 @@ img { max-width: 100%; height: auto; }
     height: var(--touch-min);
     margin-left: auto;
     background: transparent;
-    border: 1.5px solid rgba(255, 255, 255, 0.30);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 10px;
     cursor: pointer;
     color: #fff;
     position: relative;
-    /* z-index ACIMA do drawer para ser sempre clicável */
-    z-index: 1100;
-    flex-shrink: 0;
+    z-index: 1002;
     transition: background 0.2s ease, border-color 0.2s ease;
-    /* Garante área de toque real no iOS */
-    -webkit-tap-highlight-color: transparent;
 }
-.nav-toggle:hover,
-.nav-toggle:active { background: rgba(255, 255, 255, 0.12); }
+.nav-toggle:hover { background: rgba(255, 255, 255, 0.12); }
 
-/* Barras do hamburger */
+/* Ícone hamburger desenhado em CSS (3 barras → X) */
 .nav-toggle .bar,
 .nav-toggle .bar::before,
 .nav-toggle .bar::after {
     display: block;
-    width: 20px;
+    width: 22px;
     height: 2px;
     background: currentColor;
     border-radius: 2px;
@@ -114,105 +128,71 @@ img { max-width: 100%; height: auto; }
     position: absolute;
     left: 0;
 }
-.nav-toggle .bar::before { top: -6px; }
-.nav-toggle .bar::after  { top:  6px; }
+.nav-toggle .bar::before { top: -7px; }
+.nav-toggle .bar::after  { top:  7px; }
 
-/* Estado aberto → X */
-html.nav-open .nav-toggle .bar { background: transparent; }
-html.nav-open .nav-toggle .bar::before { transform: translateY(6px) rotate(45deg); }
-html.nav-open .nav-toggle .bar::after  { transform: translateY(-6px) rotate(-45deg); }
+/* Estado aberto: vira um X */
+body.nav-open .nav-toggle .bar { background: transparent; }
+body.nav-open .nav-toggle .bar::before { transform: translateY(7px) rotate(45deg); }
+body.nav-open .nav-toggle .bar::after  { transform: translateY(-7px) rotate(-45deg); }
 
-/* --- Overlay --------------------------------------------------------
-   FIX CLIQUES: SEM backdrop-filter — causa stacking context que
-   interceta eventos de toque antes de chegarem ao drawer.
-   FIX: não usamos o atributo [hidden] (que adiciona display:none
-   e causa reflow); usamos apenas opacity + pointer-events.
-   ------------------------------------------------------------------- */
+/* Overlay escuro atrás do drawer */
 .nav-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(8, 12, 20, 0.60);
-    /* SEM backdrop-filter aqui — era a causa dos cliques bloqueados */
+    background: rgba(8, 12, 20, 0.55);
+    backdrop-filter: blur(2px);
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    /* z-index entre o conteúdo normal (0) e o drawer (1050) */
-    z-index: 1040;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
 }
-html.nav-open .nav-overlay {
-    opacity: 1;
-    pointer-events: auto;
-}
+body.nav-open .nav-overlay { opacity: 1; visibility: visible; }
 
-/* --- Drawer ---------------------------------------------------------
-   FIX BARRA CINZA: position:fixed não é cortado por overflow no body
-   no Chrome Android. A solução é garantir que o drawer começa
-   exatamente em right:0 e usa translateX(100%) para sair do ecrã —
-   o overflow-x:hidden no <html> corta-o correctamente.
-   ------------------------------------------------------------------- */
+/* Trava o scroll do body quando o drawer está aberto */
+body.nav-open { overflow: hidden; }
+
+/* O drawer em si (mobile) */
 #nav-header {
     position: fixed;
     top: 0;
     right: 0;
-    /* 100dvh = altura real sem as barras do browser mobile */
-    height: 100dvh;
-    width: min(80vw, 320px);
-
+    height: 100dvh;            /* dvh evita o "salto" da barra do browser mobile */
+    width: min(82vw, 340px);
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    gap: 4px;
+    gap: 2px;
 
-    padding-top: calc(var(--header-h) + 24px);
-    padding-bottom: 32px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: calc(var(--header-h) + 28px) 18px 28px;
 
-    background: #0f1520;
+    background: #161d28;
     border-left: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: -20px 0 60px rgba(0, 0, 0, 0.50);
+    box-shadow: -16px 0 48px rgba(0, 0, 0, 0.45);
 
-    /* Começa fora do ecrã pela direita */
     transform: translateX(100%);
-    transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-
-    /* ACIMA do overlay */
-    z-index: 1050;
-
-    /* Garante que não há tap highlight indesejado */
-    -webkit-tap-highlight-color: transparent;
+    z-index: 1001;
 }
+body.nav-open #nav-header { transform: translateX(0); }
 
-html.nav-open #nav-header {
-    transform: translateX(0);
-}
-
-/* Links no drawer */
+/* Links dentro do drawer: largura total, alvo de toque generoso */
 #nav-header .links,
 #nav-header .dropdown > .links {
-    display: flex;
     width: 100%;
     justify-content: space-between;
-    align-items: center;
     min-height: var(--touch-min);
-    padding: 11px 14px;
-    font-size: 0.975rem;
+    padding: 12px 16px;
+    font-size: 1rem;
     border-radius: 10px;
-    color: rgba(255, 255, 255, 0.90);
-    text-decoration: none;
-}
-#nav-header .links:hover,
-#nav-header .links:active {
-    background: rgba(255, 255, 255, 0.07);
-    color: #fff;
 }
 
-/* Dropdowns = acordeão */
+/* Dropdowns no mobile: acordeão controlado por classe .open (via JS) */
 #nav-header .dropdown { width: 100%; }
-#nav-header .dropdown::before { display: none; }
+#nav-header .dropdown::before { display: none; } /* remove zona-hover desktop */
 
 #nav-header .dropdown-menu {
     position: static;
@@ -223,103 +203,75 @@ html.nav-open #nav-header {
     min-width: 0;
     max-height: 0;
     overflow: hidden;
-    padding: 0 8px;
-    margin: 2px 0 0;
+    padding: 0 6px;
+    margin: 0;
     background: rgba(255, 255, 255, 0.04);
-    border-radius: 10px;
     border: none;
     box-shadow: none;
-    transition: max-height 0.28s ease, padding 0.28s ease, visibility 0.28s;
+    transition: max-height 0.3s ease, padding 0.3s ease, visibility 0.3s;
 }
 #nav-header .dropdown.open > .dropdown-menu {
     visibility: visible;
     pointer-events: auto;
-    max-height: 480px;
-    padding: 6px 8px 10px;
+    max-height: 420px;
+    padding: 4px 6px 8px;
 }
-#nav-header .dropdown.open > .links .arrow {
-    transform: rotate(-135deg) translateY(-2px);
-    opacity: 1;
-}
+#nav-header .dropdown.open > .links .arrow { transform: rotate(-135deg) translateY(-2px); }
 
+/* Itens internos do dropdown no drawer (texto claro sobre fundo escuro) */
 #nav-header .dropdown-menu a,
 #nav-header .dropdown-menu .dropdown-item a {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.82);
     min-height: 40px;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    padding: 8px 12px;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: background 0.18s, color 0.18s;
+    font-size: 0.95rem;
 }
-#nav-header .dropdown-menu a:hover,
-#nav-header .dropdown-menu a:active {
+#nav-header .dropdown-menu a:hover {
     color: #fff;
-    background: rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.06);
 }
-#nav-header .dropdown-item + .dropdown-item {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-#nav-header .dropdown-menu .dropdown-item a::before { display: none; }
+#nav-header .dropdown-item + .dropdown-item { border-top-color: rgba(255, 255, 255, 0.06); }
 
-/* Seletor de idioma */
-#nav-header .dropdown--lang { margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 12px; }
+/* Seletor de idioma dentro do drawer */
+#nav-header .dropdown--lang { margin-top: 8px; }
 #nav-header .lang-trigger {
     width: 100%;
-    display: flex;
     justify-content: space-between;
-    align-items: center;
     min-height: var(--touch-min);
-    padding: 11px 14px;
-    border-radius: 10px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    color: rgba(255,255,255,0.85);
-    font-family: var(--fonte-padrao);
-    font-size: 0.975rem;
-    -webkit-tap-highlight-color: transparent;
 }
-#nav-header .lang-trigger:hover,
-#nav-header .lang-trigger:active { background: rgba(255,255,255,0.07); }
 
-/* Header em mobile */
-.header { gap: 10px; padding: 0 20px; }
+/* Header em mobile: garante que o conteúdo cabe e a logo não encolhe demais */
+.header { gap: 12px; }
 #logo-header { max-height: 30px; }
-
-/* Oculta o hamburger e overlay em desktop */
-@media (min-width: 1024px) {
-    .nav-toggle,
-    .nav-overlay { display: none !important; }
-}
 
 
 /* =====================================================================
    2. HERO + BARRA DE PESQUISA (mobile)
    ===================================================================== */
+
 .herosection .herosection_image {
-    height: 100svh;
+    height: 100svh;            /* svh = altura estável em mobile */
     min-height: 560px;
 }
 
 .hero_content {
-    top: 16%;
+    top: auto;
+    bottom: auto;
     left: var(--gutter);
     right: var(--gutter);
-    bottom: auto;
+    top: 18%;
     width: auto;
 }
 .hero_content h1 {
     font-size: var(--fs-h1);
     line-height: 1.12;
 }
+/* No mobile o <br> do título pode partir mal — deixamos o texto fluir */
 .hero_content h1 br { display: none; }
 
+/* Wrapper da pesquisa: deixa de ser absoluto/centrado e flui no fundo */
 .search-wrapper {
     position: absolute;
-    bottom: 14%;
+    bottom: 16%;
     left: var(--gutter);
     right: var(--gutter);
     transform: none;
@@ -327,33 +279,37 @@ html.nav-open #nav-header {
     max-width: none;
 }
 
+.tabs { padding-left: 2px; }
 .tab {
     flex: 1;
     text-align: center;
-    padding: 11px 16px;
+    padding: 12px 16px;
     margin-top: 0;
 }
 
+/* Barra de pesquisa empilha em coluna única no mobile */
 .search-bar {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
-    padding: 16px 14px;
+    gap: 14px;
+    padding: 18px 16px;
     border-radius: 0 16px 16px 16px;
 }
 
 .field-group,
-.field-dropdown-wrapper {
-    min-width: 0;
-    width: 100%;
-}
-.field-select { min-height: var(--touch-min); }
+.field-dropdown-wrapper { min-width: 0; width: 100%; }
 
-.location-group { width: 100%; }
-.location-wrapper { width: 100%; }
+/* Botões e selects da pesquisa com altura de toque */
+.field-select,
 .location-input {
     min-height: var(--touch-min);
-    border-radius: 12px;
+}
+
+/* Grupo de localização: input + botão filtros empilham confortavelmente */
+.location-group { width: 100%; }
+.location-wrapper { width: 100%; flex-wrap: wrap; }
+.location-input {
+    border-radius: 12px;       /* cantos completos quando empilhado */
     border-right: 1px solid transparent;
     width: 100%;
     flex: 1 1 100%;
@@ -363,12 +319,14 @@ html.nav-open #nav-header {
     width: 100%;
     justify-content: center;
 }
+
 .btn-search {
     width: 100%;
     min-height: var(--touch-min);
     padding: 14px 20px;
 }
 
+/* Painel de filtros ocupa a largura disponível no mobile */
 .filtros-panel {
     left: var(--gutter);
     right: var(--gutter);
@@ -379,11 +337,12 @@ html.nav-open #nav-header {
 .filtros-limpar { min-height: var(--touch-min); }
 .filtro-pill { min-height: 38px; display: inline-flex; align-items: center; }
 
+/* Indicador de scroll some no mobile (espaço precioso) */
 .scroll-indicator { display: none; }
 
 
 /* =====================================================================
-   3. STATS BAR (mobile)
+   3. STATS BAR (mobile) — grelha 2×2 em vez de linha única
    ===================================================================== */
 .stats-bar {
     flex-wrap: wrap;
@@ -393,40 +352,57 @@ html.nav-open #nav-header {
     margin-left: var(--gutter);
     margin-right: var(--gutter);
 }
-.stat-item { flex: 1 1 45%; padding: 10px 8px; }
+.stat-item {
+    flex: 1 1 45%;
+    padding: 10px 8px;
+}
 .stat-number { font-size: 1.4rem; }
-.stat-divider { display: none; }
+.stat-divider { display: none; }   /* divisórias verticais não fazem sentido em 2×2 */
 
 
 /* =====================================================================
-   4. SECÇÕES + GRIDS (mobile)
+   4. SECÇÕES DE CONTEÚDO — paddings e grelhas (mobile)
    ===================================================================== */
-.imoveis-section { padding: 64px var(--gutter) 56px; }
-.tipos-section, .about-us, .destinos-section { padding: 64px var(--gutter); }
 
+/* Padding lateral uniforme e respirável no mobile */
+.imoveis-section { padding: 64px var(--gutter) 56px; }
+.tipos-section,
+.about-us,
+.destinos-section { padding: 64px var(--gutter); }
+
+/* Títulos de secção fluidos */
 .header-imoveissection h2 { font-size: var(--fs-h2); }
 
+/* Grelha de imóveis: coluna única no mobile */
 .imoveis-grid { grid-template-columns: 1fr; gap: 20px; }
 
+/* Grelha de tipos: coluna única; o cartão (info + mapa) empilha */
 .tipos-grid { grid-template-columns: 1fr; gap: 16px; }
 .tipo-card { flex-direction: column; }
 .tipo-card-mapa-wrap { min-height: 200px; width: 100%; }
 
-.btn-favorito { min-width: 40px; min-height: 40px; }
-.card-explore-btn, .tipo-card-btn {
+/* Favorito e botões dentro do card com alvo de toque */
+.btn-favorito {
+    min-width: 40px;
     min-height: 40px;
-    display: inline-flex;
-    align-items: center;
 }
+.card-explore-btn,
+.tipo-card-btn { min-height: 40px; display: inline-flex; align-items: center; }
 
 
 /* =====================================================================
-   5. FOOTER (mobile — coluna única)
+   5. FOOTER (mobile) — coluna única e alvos confortáveis
    ===================================================================== */
 @media (max-width: 479px) {
-    .footer-main .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .footer-main .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
     .footer-inner { padding: 0 var(--gutter); }
-    .footer-social-btn { min-width: var(--touch-min); min-height: var(--touch-min); }
+    .footer-social-btn {
+        min-width: var(--touch-min);
+        min-height: var(--touch-min);
+    }
     .footer-contact-list a,
     .footer-nav-list a { min-height: 40px; display: inline-flex; align-items: center; }
 }
@@ -437,8 +413,12 @@ html.nav-open #nav-header {
    ===================================================================== */
 @media (min-width: 480px) {
     :root { --gutter: 28px; }
+
+    /* Stats voltam a uma linha mais folgada, ainda podendo quebrar */
     .stat-item { flex: 1 1 auto; padding: 10px 22px; }
     .stat-number { font-size: 1.6rem; }
+
+    /* Grelha de imóveis: 2 colunas */
     .imoveis-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -451,6 +431,7 @@ html.nav-open #nav-header {
 
     .hero_content h1 br { display: inline; }
 
+    /* Barra de pesquisa volta a fluir em linha (com wrap) */
     .search-bar {
         flex-direction: row;
         flex-wrap: wrap;
@@ -465,24 +446,34 @@ html.nav-open #nav-header {
     .btn-filtro { width: auto; }
     .btn-search { width: auto; flex: 0 0 auto; }
 
+    /* Tipos: cartão volta a info|mapa lado a lado */
     .tipo-card { flex-direction: row; }
     .tipo-card-mapa-wrap { width: 42%; min-height: 0; }
 
+    /* Stats numa só linha com divisórias de volta */
     .stats-bar { flex-wrap: nowrap; margin-top: -80px; }
     .stat-divider { display: block; }
     .stat-item { flex: 0 0 auto; padding: 0 40px; }
 
+    /* Footer: 2 colunas (a regra original 1024/680 cobre, reforçamos) */
     .footer-main .footer-inner { grid-template-columns: 1fr 1fr; }
 }
 
 
 /* =====================================================================
-   8. ≥1024px — DESKTOP: restaura nav inline
+   8. ≥1024px — LAPTOP: restaura a navegação desktop inline
+   =====================================================================
+   A partir daqui escondemos o hamburger/overlay e devolvemos o <nav>
+   ao seu comportamento original (inline, dropdowns por hover).
    ===================================================================== */
 @media (min-width: 1024px) {
-    html.nav-open,
-    html.nav-open body { overflow: auto; height: auto; }
+    .nav-toggle,
+    .nav-overlay { display: none; }
 
+    /* Garante que o body não fica travado mesmo se a classe persistir */
+    body.nav-open { overflow: auto; }
+
+    /* Restaura o nav inline original */
     #nav-header {
         position: static;
         height: auto;
@@ -491,10 +482,6 @@ html.nav-open #nav-header {
         align-items: center;
         gap: 2px;
         padding: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        padding-left: 0;
-        padding-right: 0;
         background: transparent;
         border: none;
         box-shadow: none;
@@ -510,13 +497,9 @@ html.nav-open #nav-header {
         padding: 6px 14px;
         font-size: 13.5px;
         border-radius: 8px;
-        color: rgba(255, 255, 255, 0.88);
-    }
-    #nav-header .links:hover {
-        background: rgba(255, 255, 255, 0.10);
-        color: #fff;
     }
 
+    /* Dropdowns voltam a flutuar (posicionamento absoluto + hover) */
     #nav-header .dropdown { width: auto; }
     #nav-header .dropdown::before { display: block; }
 
@@ -531,9 +514,7 @@ html.nav-open #nav-header {
         overflow: visible;
         min-width: 210px;
         padding: 6px;
-        margin: 0;
         background: #fff;
-        border-radius: 14px;
         border: 1px solid rgba(0, 0, 0, 0.07);
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
         transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
@@ -550,44 +531,39 @@ html.nav-open #nav-header {
         color: #323A48;
         min-height: auto;
         font-size: 13.5px;
-        padding: 9px 14px;
-        border-radius: 8px;
     }
     #nav-header .dropdown-menu a:hover {
         color: var(--cor-destaque);
         background: #f5f6f8;
     }
-    #nav-header .dropdown-menu .dropdown-item a::before { display: block; }
-    #nav-header .dropdown--lang { margin-top: 0; border-top: none; padding-top: 0; }
-    #nav-header .lang-trigger {
-        width: auto;
-        display: inline-flex;
-        min-height: auto;
-        padding: 6px 14px;
-        border-radius: 8px;
-        font-size: 13.5px;
-        background: transparent;
-        border: none;
-        color: rgba(255,255,255,0.88);
-    }
-    #nav-header .lang-trigger:hover { background: rgba(255,255,255,0.10); }
 
+    /* Secções recuperam os paddings amplos originais */
     .imoveis-section { padding: 100px 60px 80px; }
-    .tipos-section, .about-us, .destinos-section { padding: 100px 8%; }
+    .tipos-section,
+    .about-us,
+    .destinos-section { padding: 100px 8%; }
+
+    /* Grelha de imóveis: 3 colunas como no original */
     .imoveis-grid { grid-template-columns: repeat(3, 1fr); }
+    /* Tipos: 2 colunas como no original */
     .tipos-grid { grid-template-columns: repeat(2, 1fr); }
+
+    /* Hero e pesquisa recuperam o posicionamento original */
     .hero_content { top: 25%; left: 8%; width: 90%; right: auto; }
     .search-wrapper {
         bottom: 25%; left: 50%; right: auto;
         transform: translateX(-50%);
         width: 85%; max-width: 1100px;
     }
-    .stats-bar { margin-top: -100px; margin-left: auto; margin-right: auto; }
+    .stats-bar {
+        margin-top: -100px;
+        margin-left: auto; margin-right: auto;
+    }
 }
 
 
 /* =====================================================================
-   9. ≥1280px — DESKTOP GRANDE
+   9. ≥1280px — DESKTOP GRANDE: pequenos refinamentos de respiro
    ===================================================================== */
 @media (min-width: 1280px) {
     .imoveis-section { padding: 110px 0 90px; }
@@ -596,13 +572,16 @@ html.nav-open #nav-header {
 
 
 /* =====================================================================
-   10. LANDSCAPE em telemóveis baixos
+   10. ORIENTAÇÃO LANDSCAPE em telemóveis baixos
+   =====================================================================
+   Em landscape com pouca altura, o hero a 100svh empurra a pesquisa
+   para fora — encurtamos e deixamos rolar.
    ===================================================================== */
 @media (max-height: 540px) and (orientation: landscape) and (max-width: 1023px) {
     .herosection .herosection_image { min-height: 480px; }
-    .hero_content { top: 10%; }
-    .hero_content h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
-    .search-wrapper { bottom: 6%; }
+    .hero_content { top: 12%; }
+    .hero_content h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); }
+    .search-wrapper { bottom: 8%; }
     .search-bar { flex-direction: row; flex-wrap: wrap; }
-    #nav-header { padding-top: 68px; }
+    #nav-header { padding-top: 72px; }
 }
