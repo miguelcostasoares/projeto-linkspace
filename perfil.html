@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O meu perfil · LinkSpace</title>
+    <link rel="shortcut icon" href="/favicon/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lang.css">
+    <link rel="stylesheet" href="account.css">
+</head>
+
+<body class="account-page">
+    <header class="header">
+        <a href="index.html" class="header__logo-link">
+            <img src="/images/ologo_linkspace.png" alt="Linkspace" id="logo-header">
+        </a>
+        <nav id="nav-header" aria-label="Navegação principal">
+            <div class="dropdown">
+                <a href="index.html" class="links" aria-haspopup="true" aria-expanded="false">
+                    Imóveis <span class="arrow" aria-hidden="true"></span>
+                </a>
+                <div class="dropdown-menu" role="menu">
+                    <div class="dropdown-item"><a href="index.html" role="menuitem">Pesquisa avançada</a></div>
+                    <div class="dropdown-item"><a href="index.html" role="menuitem">Simulador de IMT</a></div>
+                    <div class="dropdown-item"><a href="index.html" role="menuitem">Oferta de imóvel</a></div>
+                    <div class="dropdown-item"><a href="index.html" role="menuitem">Procuro imóvel</a></div>
+                </div>
+            </div>
+            <a href="index.html" class="links">Empreendimentos</a>
+            <a href="index.html" class="links">Análise de mercado</a>
+            <a href="index.html" class="links">Notícias</a>
+            <div class="dropdown">
+                <a href="index.html" class="links" aria-haspopup="true" aria-expanded="false">
+                    Empresa <span class="arrow" aria-hidden="true"></span>
+                </a>
+                <div class="dropdown-menu" role="menu">
+                    <a href="index.html" role="menuitem">Quem Somos</a>
+                    <a href="index.html" role="menuitem">Recrutamento</a>
+                </div>
+            </div>
+            <a href="index.html" class="links">Contactos</a>
+
+            <div class="dropdown dropdown--lang">
+                <button class="links lang-trigger" aria-haspopup="true" aria-expanded="false" aria-label="Idioma">
+                    <img src="https://flagcdn.com/pt.svg" alt="Português" class="lang-flag" id="lang-flag-active">
+                    <span class="arrow" aria-hidden="true"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu--lang" role="menu">
+                    <button class="lang-option" data-lang="pt" role="menuitem">
+                        <img src="https://flagcdn.com/pt.svg" alt="Português" class="lang-flag"><span>Português</span>
+                    </button>
+                    <button class="lang-option" data-lang="es" role="menuitem">
+                        <img src="https://flagcdn.com/es.svg" alt="Español" class="lang-flag"><span>Español</span>
+                    </button>
+                    <button class="lang-option" data-lang="en" role="menuitem">
+                        <img src="https://flagcdn.com/gb.svg" alt="English" class="lang-flag"><span>English</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="profile-hero">
+        <div class="profile-hero-inner">
+            <span class="profile-hero-eyebrow">A minha conta</span>
+            <h1 class="profile-hello">Olá, <span id="uName">—</span></h1>
+            <p class="profile-sub">Gere o seu perfil, imóveis guardados e histórico de visitas.</p>
+        </div>
+    </section>
+
+    <main class="profile-wrap">
+        <div class="profile-grid">
+
+            <aside class="profile-nav" role="tablist">
+                <button data-sep="perfil" class="is-active" role="tab"><i class="ti ti-user-circle" aria-hidden="true"></i> O meu perfil</button>
+                <button data-sep="guardados" role="tab"><i class="ti ti-heart" aria-hidden="true"></i> Imóveis guardados</button>
+                <button data-sep="historico" role="tab"><i class="ti ti-history" aria-hidden="true"></i> Histórico</button>
+                <div class="nav-sep"></div>
+                <button class="nav-logout" id="navLogout"><i class="ti ti-logout" aria-hidden="true"></i> Terminar sessão</button>
+            </aside>
+
+            <section class="profile-panel">
+
+                <!-- PERFIL -->
+                <div class="panel-pane is-active" data-pane="perfil">
+                    <h2 class="pane-title">O meu perfil</h2>
+                    <p class="pane-sub">Os seus dados de conta.</p>
+
+                    <div class="form-alert" id="perfilAlert" role="alert"></div>
+
+                    <form class="profile-form" id="formPerfil" novalidate>
+                        <div class="field">
+                            <label for="pf-nome">Nome</label>
+                            <div class="input-wrap">
+                                <i class="ti ti-user" aria-hidden="true"></i>
+                                <input type="text" id="pf-nome" autocomplete="name">
+                            </div>
+                            <span class="field-msg" data-for="pf-nome"></span>
+                        </div>
+
+                        <div class="field-static">
+                            <label>E-mail</label>
+                            <span id="pf-email">—</span>
+                        </div>
+
+                        <div class="field">
+                            <label for="pf-tel">Telefone <span class="opt">(opcional)</span></label>
+                            <div class="input-wrap">
+                                <i class="ti ti-phone" aria-hidden="true"></i>
+                                <input type="tel" id="pf-tel" autocomplete="tel" placeholder="(+351) 900 000 000">
+                            </div>
+                            <span class="field-msg" data-for="pf-tel"></span>
+                        </div>
+
+                        <button type="submit" class="btn-primary btn-inline">Guardar alterações</button>
+                    </form>
+
+                    <div class="card-block" style="margin-top:26px;">
+                        <div class="card-block-title"><i class="ti ti-lock" aria-hidden="true"></i> Palavra-passe</div>
+                        <button type="button" class="btn-ghost" id="togglePass"><i class="ti ti-key" aria-hidden="true"></i> Alterar palavra-passe</button>
+
+                        <form class="collapse" id="formPass" novalidate>
+                            <div class="field" style="margin-top:4px;">
+                                <label for="pp-atual">Palavra-passe atual</label>
+                                <div class="input-wrap">
+                                    <i class="ti ti-lock" aria-hidden="true"></i>
+                                    <input type="password" id="pp-atual" autocomplete="current-password">
+                                    <button type="button" class="pass-toggle" data-target="pp-atual" aria-label="Mostrar"><i class="ti ti-eye"></i></button>
+                                </div>
+                                <span class="field-msg" data-for="pp-atual"></span>
+                            </div>
+                            <div class="field">
+                                <label for="pp-nova">Nova palavra-passe</label>
+                                <div class="input-wrap">
+                                    <i class="ti ti-lock" aria-hidden="true"></i>
+                                    <input type="password" id="pp-nova" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+                                    <button type="button" class="pass-toggle" data-target="pp-nova" aria-label="Mostrar"><i class="ti ti-eye"></i></button>
+                                </div>
+                                <span class="field-msg" data-for="pp-nova"></span>
+                            </div>
+                            <button type="submit" class="btn-primary btn-inline">Atualizar palavra-passe</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- GUARDADOS -->
+                <div class="panel-pane" data-pane="guardados">
+                    <h2 class="pane-title">Imóveis guardados</h2>
+                    <p class="pane-sub">Os imóveis que marcou com coração.</p>
+                    <div id="gridGuardados"></div>
+                </div>
+
+                <!-- HISTÓRICO -->
+                <div class="panel-pane" data-pane="historico">
+                    <h2 class="pane-title">Histórico de imóveis vistos</h2>
+                    <p class="pane-sub">Os últimos imóveis que explorou.</p>
+                    <div class="pane-tools">
+                        <button type="button" class="btn-ghost" id="limparHist"><i class="ti ti-trash" aria-hidden="true"></i> Limpar histórico</button>
+                    </div>
+                    <div id="gridHistorico"></div>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <script src="js/auth.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/lang.js"></script>
+    <script src="js/account.js"></script>
+    <script>
+        (function () {
+            'use strict';
+            var Auth = window.LinkSpaceAuth;
+
+            // Proteção: sem sessão → ir para o login.
+            if (!Auth || !Auth.isLoggedIn()) {
+                window.location.replace('login.html?proximo=perfil.html');
+                return;
+            }
+            if (typeof initHeaderScroll === 'function') initHeaderScroll();
+
+            var user = Auth.getUser();
+            document.getElementById('uName').textContent = (user.name || '').split(' ')[0] || user.name || '';
+            document.getElementById('pf-nome').value = user.name || '';
+            document.getElementById('pf-email').textContent = user.email;
+            document.getElementById('pf-tel').value = user.phone || '';
+
+            // ── Navegação entre painéis ──
+            var navBtns = document.querySelectorAll('.profile-nav [data-sep]');
+            var panes = document.querySelectorAll('.panel-pane');
+            function openPane(sep) {
+                navBtns.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-sep') === sep); });
+                panes.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-pane') === sep); });
+                if (sep === 'guardados') renderGuardados();
+                if (sep === 'historico') renderHistorico();
+            }
+            navBtns.forEach(function (b) {
+                b.addEventListener('click', function () { openPane(b.getAttribute('data-sep')); });
+            });
+
+            document.getElementById('navLogout').addEventListener('click', function () {
+                Auth.logout();
+                window.location.href = 'index.html';
+            });
+
+            // ── Mostrar/ocultar palavras-passe ──
+            document.querySelectorAll('.pass-toggle').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var input = document.getElementById(btn.getAttribute('data-target'));
+                    if (!input) return;
+                    var show = input.type === 'password';
+                    input.type = show ? 'text' : 'password';
+                    btn.querySelector('i').className = show ? 'ti ti-eye-off' : 'ti ti-eye';
+                });
+            });
+
+            // ── Helpers de mensagens ──
+            function setMsg(formId, field, text) {
+                var m = document.querySelector('#' + formId + ' .field-msg[data-for$="' + field + '"]');
+                if (m) m.textContent = text;
+            }
+            function clearForm(formId) {
+                document.querySelectorAll('#' + formId + ' .field-msg').forEach(function (m) { m.textContent = ''; });
+                document.querySelectorAll('#' + formId + ' input').forEach(function (i) { i.classList.remove('has-error'); });
+            }
+            function alertBox(id, type, text) {
+                var a = document.getElementById(id);
+                if (!a) return;
+                a.className = 'form-alert ' + type + ' show';
+                a.textContent = text;
+                if (type === 'ok') setTimeout(function () { a.className = 'form-alert'; }, 3200);
+            }
+
+            // ── Guardar perfil ──
+            document.getElementById('formPerfil').addEventListener('submit', function (e) {
+                e.preventDefault(); clearForm('formPerfil');
+                Auth.updateProfile({
+                    name: document.getElementById('pf-nome').value,
+                    phone: document.getElementById('pf-tel').value
+                }).then(function (u) {
+                    document.getElementById('uName').textContent = (u.name || '').split(' ')[0] || u.name;
+                    alertBox('perfilAlert', 'ok', 'Dados atualizados com sucesso.');
+                }).catch(function (er) {
+                    if (er.field === 'name') setMsg('formPerfil', 'nome', er.message);
+                    else alertBox('perfilAlert', 'erro', er.message || 'Não foi possível guardar.');
+                });
+            });
+
+            // ── Alterar palavra-passe ──
+            var formPass = document.getElementById('formPass');
+            document.getElementById('togglePass').addEventListener('click', function () {
+                formPass.classList.toggle('open');
+            });
+            formPass.addEventListener('submit', function (e) {
+                e.preventDefault(); clearForm('formPass');
+                Auth.changePassword({
+                    current: document.getElementById('pp-atual').value,
+                    next: document.getElementById('pp-nova').value
+                }).then(function () {
+                    formPass.reset(); formPass.classList.remove('open');
+                    alertBox('perfilAlert', 'ok', 'Palavra-passe atualizada.');
+                }).catch(function (er) {
+                    if (er.field === 'current') setMsg('formPass', 'atual', er.message);
+                    else if (er.field === 'next') setMsg('formPass', 'nova', er.message);
+                    else alertBox('perfilAlert', 'erro', er.message || 'Não foi possível atualizar.');
+                });
+            });
+
+            // ── Render de grelhas ──
+            function propCard(p, opts) {
+                opts = opts || {};
+                var img = p.image
+                    ? '<div class="prop-mini__img" style="background-image:url(\'' + p.image.replace(/'/g, '') + '\')">'
+                    : '<div class="prop-mini__img">';
+                var removeBtn = opts.remove
+                    ? '<button class="prop-mini__remove" data-id="' + esc(p.id) + '" aria-label="Remover"><i class="ti ti-x"></i></button>'
+                    : '';
+                var date = opts.date && p.ts
+                    ? '<span class="prop-mini__date">' + fmtDate(p.ts) + '</span>'
+                    : '<span class="prop-mini__date"></span>';
+                return '<article class="prop-mini">' +
+                    img + removeBtn + '</div>' +
+                    '<div class="prop-mini__body">' +
+                        (p.id ? '<span class="prop-mini__ref">' + esc(p.id) + '</span>' : '') +
+                        '<span class="prop-mini__title">' + esc(p.title) + '</span>' +
+                        '<span class="prop-mini__loc">' + esc(p.location) + '</span>' +
+                        '<div class="prop-mini__foot"><span class="prop-mini__price">' + esc(p.price) + '</span>' + date + '</div>' +
+                    '</div>' +
+                '</article>';
+            }
+
+            function renderGuardados() {
+                var list = Auth.getSaved();
+                var box = document.getElementById('gridGuardados');
+                if (!list.length) {
+                    box.innerHTML = empty('ti ti-heart', 'Ainda não guardou nenhum imóvel.', 'Toque no coração de um imóvel para o guardar aqui.');
+                    return;
+                }
+                box.className = 'props-grid';
+                box.innerHTML = list.map(function (p) { return propCard(p, { remove: true }); }).join('');
+                box.querySelectorAll('.prop-mini__remove').forEach(function (b) {
+                    b.addEventListener('click', function () { Auth.removeSaved(b.getAttribute('data-id')); renderGuardados(); });
+                });
+            }
+
+            function renderHistorico() {
+                var list = Auth.getViewed();
+                var box = document.getElementById('gridHistorico');
+                if (!list.length) {
+                    box.innerHTML = empty('ti ti-history', 'O seu histórico está vazio.', 'Os imóveis que explorar aparecem aqui.');
+                    return;
+                }
+                box.className = 'props-grid';
+                box.innerHTML = list.map(function (p) { return propCard(p, { date: true }); }).join('');
+            }
+
+            function empty(icon, title, text) {
+                return '<div class="empty-state"><i class="' + icon + '"></i><p><strong>' + title + '</strong><br>' + text +
+                    '<br><a href="index.html">Ver imóveis</a></p></div>';
+            }
+            function fmtDate(ts) {
+                try { return new Date(ts).toLocaleDateString('pt-PT', { day: '2-digit', month: 'short' }); }
+                catch (e) { return ''; }
+            }
+            function esc(s) {
+                return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+                    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+                });
+            }
+
+            document.getElementById('limparHist').addEventListener('click', function () {
+                Auth.clearViewed(); renderHistorico();
+            });
+
+            // Abertura inicial conforme ?sep=
+            var sep = new URLSearchParams(window.location.search).get('sep');
+            openPane(['guardados', 'historico'].indexOf(sep) >= 0 ? sep : 'perfil');
+        })();
+    </script>
+</body>
+
+</html>

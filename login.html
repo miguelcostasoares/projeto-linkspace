@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar · LinkSpace</title>
+    <link rel="shortcut icon" href="/favicon/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lang.css">
+    <link rel="stylesheet" href="account.css">
+</head>
+
+<body class="account-page">
+    <div class="auth-shell">
+
+        <!-- Painel de marca -->
+        <aside class="auth-brand">
+            <div class="auth-brand__bg" aria-hidden="true"></div>
+            <a href="index.html" class="auth-brand__logo">
+                <img src="/images/ologo_linkspace.png" alt="LinkSpace">
+            </a>
+            <div class="auth-brand__copy">
+                <span class="auth-brand__eyebrow">A sua conta LinkSpace</span>
+                <h1 class="auth-brand__title">Bem-vindo a <span>casa</span>.</h1>
+                <p class="auth-brand__text">
+                    Guarde os imóveis que mais gosta, acompanhe os que já viu e receba
+                    em primeira mão os novos anúncios.
+                </p>
+            </div>
+            <a href="index.html" class="auth-brand__back"><i class="ti ti-arrow-left" aria-hidden="true"></i> Voltar ao site</a>
+        </aside>
+
+        <!-- Painel do formulário -->
+        <main class="auth-panel">
+            <div class="auth-card">
+
+                <!-- Separadores -->
+                <div class="auth-tabs" id="authTabs" role="tablist">
+                    <button class="auth-tab is-active" data-modo="entrar" role="tab">Entrar</button>
+                    <button class="auth-tab" data-modo="registar" role="tab">Criar conta</button>
+                </div>
+
+                <div class="form-alert" id="formAlert" role="alert"></div>
+
+                <!-- ENTRAR -->
+                <form id="formEntrar" novalidate>
+                    <h2 class="auth-form-title">Entrar</h2>
+                    <p class="auth-form-sub">Aceda à sua conta para continuar.</p>
+
+                    <div class="field">
+                        <label for="le-email">E-mail</label>
+                        <div class="input-wrap">
+                            <i class="ti ti-mail" aria-hidden="true"></i>
+                            <input type="email" id="le-email" autocomplete="email" placeholder="nome@exemplo.pt">
+                        </div>
+                        <span class="field-msg" data-for="le-email"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="le-pass">Palavra-passe</label>
+                        <div class="input-wrap">
+                            <i class="ti ti-lock" aria-hidden="true"></i>
+                            <input type="password" id="le-pass" autocomplete="current-password" placeholder="••••••••">
+                            <button type="button" class="pass-toggle" data-target="le-pass" aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
+                        </div>
+                        <span class="field-msg" data-for="le-pass"></span>
+                    </div>
+
+                    <div class="auth-row">
+                        <span></span>
+                        <button type="button" class="link-btn" id="goForgot">Esqueci-me da palavra-passe</button>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Entrar</button>
+                    <p class="auth-switch">Ainda não tem conta? <button type="button" class="link-btn" data-goto="registar">Criar conta</button></p>
+                </form>
+
+                <!-- REGISTAR -->
+                <form id="formRegistar" novalidate hidden>
+                    <h2 class="auth-form-title">Criar conta</h2>
+                    <p class="auth-form-sub">É rápido e gratuito.</p>
+
+                    <div class="field">
+                        <label for="lr-nome">Nome</label>
+                        <div class="input-wrap">
+                            <i class="ti ti-user" aria-hidden="true"></i>
+                            <input type="text" id="lr-nome" autocomplete="name" placeholder="O seu nome">
+                        </div>
+                        <span class="field-msg" data-for="lr-nome"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="lr-email">E-mail</label>
+                        <div class="input-wrap">
+                            <i class="ti ti-mail" aria-hidden="true"></i>
+                            <input type="email" id="lr-email" autocomplete="email" placeholder="nome@exemplo.pt">
+                        </div>
+                        <span class="field-msg" data-for="lr-email"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="lr-pass">Palavra-passe</label>
+                        <div class="input-wrap">
+                            <i class="ti ti-lock" aria-hidden="true"></i>
+                            <input type="password" id="lr-pass" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+                            <button type="button" class="pass-toggle" data-target="lr-pass" aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
+                        </div>
+                        <span class="field-msg" data-for="lr-pass"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="lr-tel">Telefone <span class="opt">(opcional)</span></label>
+                        <div class="input-wrap">
+                            <i class="ti ti-phone" aria-hidden="true"></i>
+                            <input type="tel" id="lr-tel" autocomplete="tel" placeholder="(+351) 900 000 000">
+                        </div>
+                        <span class="field-msg" data-for="lr-tel"></span>
+                    </div>
+
+                    <label class="checkbox" style="margin:6px 0 20px;">
+                        <input type="checkbox" id="lr-news" checked>
+                        Quero receber novidades e novos imóveis por e-mail.
+                    </label>
+
+                    <button type="submit" class="btn-primary">Criar conta</button>
+                    <p class="auth-switch">Já tem conta? <button type="button" class="link-btn" data-goto="entrar">Entrar</button></p>
+                </form>
+
+                <!-- RECUPERAR -->
+                <form id="formRecuperar" novalidate hidden>
+                    <h2 class="auth-form-title">Recuperar palavra-passe</h2>
+                    <p class="auth-form-sub">Em produção, isto envia um link de recuperação por e-mail. Nesta demonstração, defina já uma nova palavra-passe.</p>
+
+                    <div class="field">
+                        <label for="lf-email">E-mail</label>
+                        <div class="input-wrap">
+                            <i class="ti ti-mail" aria-hidden="true"></i>
+                            <input type="email" id="lf-email" autocomplete="email" placeholder="nome@exemplo.pt">
+                        </div>
+                        <span class="field-msg" data-for="lf-email"></span>
+                    </div>
+
+                    <div class="field">
+                        <label for="lf-pass">Nova palavra-passe</label>
+                        <div class="input-wrap">
+                            <i class="ti ti-lock" aria-hidden="true"></i>
+                            <input type="password" id="lf-pass" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+                            <button type="button" class="pass-toggle" data-target="lf-pass" aria-label="Mostrar palavra-passe"><i class="ti ti-eye"></i></button>
+                        </div>
+                        <span class="field-msg" data-for="lf-pass"></span>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Definir nova palavra-passe</button>
+                    <p class="auth-switch"><button type="button" class="link-btn" data-goto="entrar">Voltar ao início de sessão</button></p>
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/lang.js"></script>
+    <script>
+        (function () {
+            'use strict';
+            var Auth = window.LinkSpaceAuth;
+
+            // Se já tem sessão, não faz sentido ficar aqui.
+            if (Auth && Auth.isLoggedIn()) {
+                window.location.replace(destino());
+                return;
+            }
+
+            var params = new URLSearchParams(window.location.search);
+            function destino() {
+                var p = params.get('proximo');
+                return (p && /^[\w./-]+$/.test(p)) ? p : 'index.html';
+            }
+
+            var forms = {
+                entrar: document.getElementById('formEntrar'),
+                registar: document.getElementById('formRegistar'),
+                recuperar: document.getElementById('formRecuperar')
+            };
+            var tabs = document.getElementById('authTabs');
+            var alertBox = document.getElementById('formAlert');
+
+            function clearMsgs() {
+                alertBox.className = 'form-alert';
+                alertBox.textContent = '';
+                document.querySelectorAll('.field-msg').forEach(function (m) { m.textContent = ''; });
+                document.querySelectorAll('input').forEach(function (i) { i.classList.remove('has-error'); });
+            }
+
+            function show(modo) {
+                clearMsgs();
+                Object.keys(forms).forEach(function (k) { forms[k].hidden = (k !== modo); });
+                tabs.style.display = (modo === 'recuperar') ? 'none' : 'flex';
+                tabs.querySelectorAll('.auth-tab').forEach(function (t) {
+                    t.classList.toggle('is-active', t.getAttribute('data-modo') === modo);
+                });
+            }
+
+            function fieldError(formEl, field, message) {
+                var input = formEl.querySelector('#' + prefixOf(formEl) + field) ||
+                            formEl.querySelector('[id$="-' + field + '"]');
+                var msg = formEl.querySelector('.field-msg[data-for$="' + field + '"]');
+                if (msg) msg.textContent = message;
+                if (input) input.classList.add('has-error');
+            }
+            function prefixOf(formEl) {
+                if (formEl === forms.entrar) return 'le-';
+                if (formEl === forms.registar) return 'lr-';
+                return 'lf-';
+            }
+            function showError(formEl, er) {
+                if (er && er.field) {
+                    var map = { name: 'nome', password: 'pass', next: 'pass', current: 'pass', email: 'email', phone: 'tel' };
+                    fieldError(formEl, map[er.field] || er.field, er.message || 'Erro.');
+                } else {
+                    alertBox.className = 'form-alert erro show';
+                    alertBox.textContent = (er && er.message) || 'Ocorreu um erro. Tente novamente.';
+                }
+            }
+
+            function busy(formEl, on) {
+                var b = formEl.querySelector('.btn-primary');
+                if (b) { b.disabled = on; b.style.opacity = on ? '0.6' : ''; }
+            }
+
+            // Mostrar/ocultar palavra-passe
+            document.querySelectorAll('.pass-toggle').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var input = document.getElementById(btn.getAttribute('data-target'));
+                    if (!input) return;
+                    var show = input.type === 'password';
+                    input.type = show ? 'text' : 'password';
+                    btn.querySelector('i').className = show ? 'ti ti-eye-off' : 'ti ti-eye';
+                });
+            });
+
+            // Navegação entre separadores / vistas
+            tabs.addEventListener('click', function (e) {
+                var t = e.target.closest('.auth-tab');
+                if (t) show(t.getAttribute('data-modo'));
+            });
+            document.querySelectorAll('[data-goto]').forEach(function (b) {
+                b.addEventListener('click', function () { show(b.getAttribute('data-goto')); });
+            });
+            document.getElementById('goForgot').addEventListener('click', function () { show('recuperar'); });
+
+            // ENTRAR
+            forms.entrar.addEventListener('submit', function (e) {
+                e.preventDefault(); clearMsgs(); busy(forms.entrar, true);
+                Auth.login({
+                    email: document.getElementById('le-email').value,
+                    password: document.getElementById('le-pass').value
+                }).then(function () {
+                    window.location.href = destino();
+                }).catch(function (er) { busy(forms.entrar, false); showError(forms.entrar, er); });
+            });
+
+            // REGISTAR
+            forms.registar.addEventListener('submit', function (e) {
+                e.preventDefault(); clearMsgs(); busy(forms.registar, true);
+                Auth.register({
+                    name: document.getElementById('lr-nome').value,
+                    email: document.getElementById('lr-email').value,
+                    password: document.getElementById('lr-pass').value,
+                    phone: document.getElementById('lr-tel').value,
+                    newsletter: document.getElementById('lr-news').checked
+                }).then(function () {
+                    window.location.href = destino();
+                }).catch(function (er) { busy(forms.registar, false); showError(forms.registar, er); });
+            });
+
+            // RECUPERAR
+            forms.recuperar.addEventListener('submit', function (e) {
+                e.preventDefault(); clearMsgs(); busy(forms.recuperar, true);
+                Auth.resetPassword({
+                    email: document.getElementById('lf-email').value,
+                    next: document.getElementById('lf-pass').value
+                }).then(function () {
+                    busy(forms.recuperar, false);
+                    show('entrar');
+                    alertBox.className = 'form-alert ok show';
+                    alertBox.textContent = 'Palavra-passe atualizada. Já pode iniciar sessão.';
+                }).catch(function (er) { busy(forms.recuperar, false); showError(forms.recuperar, er); });
+            });
+
+            // Estado inicial
+            show(params.get('modo') === 'registar' ? 'registar' : 'entrar');
+        })();
+    </script>
+</body>
+
+</html>

@@ -1,4 +1,7 @@
 /* ============================================================
+   LINKSPACE — lang.js
+   Sistema de tradução PT-PT (principal) · EN-GB · ES-ES
+   ------------------------------------------------------------
    • Não altera o HTML: traduz o DOM por nós de texto,
      preservando ícones (<i>), imagens, SVG e estrutura.
    • Traduz conteúdo dinâmico (dropdowns, cidades, equipa…)
@@ -296,7 +299,134 @@
             en: 'LinkSpace. All rights reserved.',
             es: 'LinkSpace. Todos los derechos reservados.'
         },
-        'Criado por': { en: 'Created by', es: 'Creado por' }
+        'Criado por': { en: 'Created by', es: 'Creado por' },
+
+        /* ── Contas: widget da navbar ── */
+        'Conta': { en: 'Account', es: 'Cuenta' },
+        'Entrar': { en: 'Log in', es: 'Iniciar sesión' },
+        'Criar conta': { en: 'Create account', es: 'Crear cuenta' },
+        'Imóveis guardados': { en: 'Saved properties', es: 'Inmuebles guardados' },
+        'Histórico de imóveis vistos': { en: 'Viewing history', es: 'Historial de inmuebles vistos' },
+        'O meu perfil': { en: 'My profile', es: 'Mi perfil' },
+        'Terminar sessão': { en: 'Log out', es: 'Cerrar sesión' },
+        'Histórico': { en: 'History', es: 'Historial' },
+
+        /* ── Newsletter ── */
+        'Newsletter': { en: 'Newsletter', es: 'Boletín' },
+        'Receba os novos imóveis e novidades no seu e-mail.': {
+            en: 'Get new properties and news straight to your inbox.',
+            es: 'Reciba los nuevos inmuebles y novedades en su correo.'
+        },
+        'O seu e-mail': { en: 'Your email', es: 'Su correo electrónico' },
+        'Subscrição feita. Obrigado!': { en: 'You\u2019re subscribed. Thank you!', es: '¡Suscripción hecha. Gracias!' },
+        'Não foi possível subscrever.': { en: 'Could not subscribe.', es: 'No se pudo suscribir.' },
+        'Indique um e-mail válido.': { en: 'Enter a valid email.', es: 'Indique un correo válido.' },
+
+        /* ── Toast ── */
+        'Inicie sessão para guardar imóveis.': {
+            en: 'Log in to save properties.',
+            es: 'Inicie sesión para guardar inmuebles.'
+        },
+
+        /* ── Página de login / registo ── */
+        'A sua conta LinkSpace': { en: 'Your LinkSpace account', es: 'Su cuenta LinkSpace' },
+        'Bem-vindo a': { en: 'Welcome', es: 'Bienvenido a' },
+        'casa': { en: 'home', es: 'casa' },
+        'Guarde os imóveis que mais gosta, acompanhe os que já viu e receba em primeira mão os novos anúncios.': {
+            en: 'Save the properties you love, keep track of the ones you\u2019ve seen and be the first to know about new listings.',
+            es: 'Guarde los inmuebles que más le gustan, siga los que ya ha visto y reciba antes que nadie los nuevos anuncios.'
+        },
+        'Voltar ao site': { en: 'Back to site', es: 'Volver al sitio' },
+        'Aceda à sua conta para continuar.': { en: 'Sign in to your account to continue.', es: 'Acceda a su cuenta para continuar.' },
+        'E-mail': { en: 'Email', es: 'Correo electrónico' },
+        'Palavra-passe': { en: 'Password', es: 'Contraseña' },
+        'Esqueci-me da palavra-passe': { en: 'Forgot your password?', es: 'Olvidé mi contraseña' },
+        'Ainda não tem conta?': { en: 'Don\u2019t have an account yet?', es: '¿Aún no tiene cuenta?' },
+        'É rápido e gratuito.': { en: 'It\u2019s quick and free.', es: 'Es rápido y gratuito.' },
+        'Nome': { en: 'Name', es: 'Nombre' },
+        'Telefone': { en: 'Phone', es: 'Teléfono' },
+        '(opcional)': { en: '(optional)', es: '(opcional)' },
+        'Quero receber novidades e novos imóveis por e-mail.': {
+            en: 'I want to receive news and new properties by email.',
+            es: 'Quiero recibir novedades y nuevos inmuebles por correo.'
+        },
+        'Já tem conta?': { en: 'Already have an account?', es: '¿Ya tiene cuenta?' },
+        'Recuperar palavra-passe': { en: 'Reset password', es: 'Recuperar contraseña' },
+        'Em produção, isto envia um link de recuperação por e-mail. Nesta demonstração, defina já uma nova palavra-passe.': {
+            en: 'In production this sends a recovery link by email. In this demo, set a new password right away.',
+            es: 'En producción, esto envía un enlace de recuperación por correo. En esta demostración, defina ya una nueva contraseña.'
+        },
+        'Nova palavra-passe': { en: 'New password', es: 'Nueva contraseña' },
+        'Definir nova palavra-passe': { en: 'Set new password', es: 'Definir nueva contraseña' },
+        'Voltar ao início de sessão': { en: 'Back to sign in', es: 'Volver al inicio de sesión' },
+        'Mínimo 6 caracteres': { en: 'At least 6 characters', es: 'Mínimo 6 caracteres' },
+        'O seu nome': { en: 'Your name', es: 'Su nombre' },
+        'Mostrar palavra-passe': { en: 'Show password', es: 'Mostrar contraseña' },
+        'Palavra-passe atualizada. Já pode iniciar sessão.': {
+            en: 'Password updated. You can now sign in.',
+            es: 'Contraseña actualizada. Ya puede iniciar sesión.'
+        },
+
+        /* ── Página de perfil ── */
+        'A minha conta': { en: 'My account', es: 'Mi cuenta' },
+        'Olá,': { en: 'Hi,', es: 'Hola,' },
+        'Gere o seu perfil, imóveis guardados e histórico de visitas.': {
+            en: 'Manage your profile, saved properties and viewing history.',
+            es: 'Gestione su perfil, inmuebles guardados e historial de visitas.'
+        },
+        'Os seus dados de conta.': { en: 'Your account details.', es: 'Los datos de su cuenta.' },
+        'Guardar alterações': { en: 'Save changes', es: 'Guardar cambios' },
+        'Alterar palavra-passe': { en: 'Change password', es: 'Cambiar contraseña' },
+        'Palavra-passe atual': { en: 'Current password', es: 'Contraseña actual' },
+        'Atualizar palavra-passe': { en: 'Update password', es: 'Actualizar contraseña' },
+        'Os imóveis que marcou com coração.': {
+            en: 'The properties you\u2019ve hearted.',
+            es: 'Los inmuebles que marcó con corazón.'
+        },
+        'Os últimos imóveis que explorou.': {
+            en: 'The latest properties you\u2019ve explored.',
+            es: 'Los últimos inmuebles que ha explorado.'
+        },
+        'Limpar histórico': { en: 'Clear history', es: 'Borrar historial' },
+        'Ainda não guardou nenhum imóvel.': { en: 'You haven\u2019t saved any properties yet.', es: 'Aún no ha guardado ningún inmueble.' },
+        'Toque no coração de um imóvel para o guardar aqui.': {
+            en: 'Tap the heart on a property to save it here.',
+            es: 'Toque el corazón de un inmueble para guardarlo aquí.'
+        },
+        'O seu histórico está vazio.': { en: 'Your history is empty.', es: 'Su historial está vacío.' },
+        'Os imóveis que explorar aparecem aqui.': {
+            en: 'Properties you explore appear here.',
+            es: 'Los inmuebles que explore aparecen aquí.'
+        },
+        'Ver imóveis': { en: 'View properties', es: 'Ver inmuebles' },
+        'Dados atualizados com sucesso.': { en: 'Details updated successfully.', es: 'Datos actualizados correctamente.' },
+        'Palavra-passe atualizada.': { en: 'Password updated.', es: 'Contraseña actualizada.' },
+        'Não foi possível guardar.': { en: 'Could not save.', es: 'No se pudo guardar.' },
+        'Não foi possível atualizar.': { en: 'Could not update.', es: 'No se pudo actualizar.' },
+
+        /* ── Mensagens de erro (auth.js) ── */
+        'Indique o seu nome.': { en: 'Enter your name.', es: 'Indique su nombre.' },
+        'A palavra-passe precisa de pelo menos 6 caracteres.': {
+            en: 'Password must be at least 6 characters.',
+            es: 'La contraseña necesita al menos 6 caracteres.'
+        },
+        'Já existe uma conta com este e-mail.': { en: 'An account with this email already exists.', es: 'Ya existe una cuenta con este correo.' },
+        'Não encontrámos nenhuma conta com este e-mail.': {
+            en: 'We couldn\u2019t find an account with this email.',
+            es: 'No encontramos ninguna cuenta con este correo.'
+        },
+        'Palavra-passe incorreta.': { en: 'Incorrect password.', es: 'Contraseña incorrecta.' },
+        'Sessão terminada. Inicie sessão novamente.': { en: 'Session ended. Please sign in again.', es: 'Sesión finalizada. Inicie sesión de nuevo.' },
+        'Sessão terminada.': { en: 'Session ended.', es: 'Sesión finalizada.' },
+        'Conta não encontrada.': { en: 'Account not found.', es: 'Cuenta no encontrada.' },
+        'O nome não pode ficar vazio.': { en: 'Name cannot be empty.', es: 'El nombre no puede quedar vacío.' },
+        'A nova palavra-passe precisa de pelo menos 6 caracteres.': {
+            en: 'The new password must be at least 6 characters.',
+            es: 'La nueva contraseña necesita al menos 6 caracteres.'
+        },
+        'A palavra-passe atual está incorreta.': { en: 'The current password is incorrect.', es: 'La contraseña actual es incorrecta.' },
+        'Não existe nenhuma conta com este e-mail.': { en: 'There is no account with this email.', es: 'No existe ninguna cuenta con este correo.' },
+        'Ocorreu um erro. Tente novamente.': { en: 'Something went wrong. Please try again.', es: 'Ocurrió un error. Inténtelo de nuevo.' }
     };
 
     /* ────────────────────────────────────────────────────────
